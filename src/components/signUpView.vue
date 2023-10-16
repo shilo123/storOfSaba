@@ -49,7 +49,7 @@
             <el-input
               v-model="ElFrom.ishi.Inputphone"
               placeholder="הקלד מספר טלפון"
-              maxlength="10"
+              maxlength="15"
             ></el-input>
           </el-form-item>
           <el-form-item

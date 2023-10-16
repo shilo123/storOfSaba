@@ -105,7 +105,7 @@ export default {
       return str;
     },
     mondo(pc) {
-      return require(`../../server/uploads/${pc.name}.png`);
+      return require(`../assets/${pc.name}.png`);
     },
     sortSum() {
       let sum = this.data.products.reduce((sumo, e) => {
