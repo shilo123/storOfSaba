@@ -114,7 +114,11 @@ export default {
       return str;
     },
     mondo(pc) {
-      return require(`../assets/${pc.name}.png`);
+      if (pc.name !== "ארון אימרי .70.75.80") {
+        return require(`../assets/${pc.name}.png`);
+      } else {
+        return require(`../assets/${"ארון אימרי .70.75.80"}.png`);
+      }
     },
     sortSum() {
       let sum = this.data.products.reduce((sumo, e) => {

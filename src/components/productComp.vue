@@ -59,8 +59,6 @@ export default {
   },
   computed: {},
   mounted() {
-    // this.file = require(`../../dist/img/${this.prod.name}.png`);
-    console.log(this.prod.name);
     this.file = require(`../assets/${this.prod.name}.png`);
     // this.sortB();
   },

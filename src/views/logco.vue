@@ -1,6 +1,6 @@
 <template>
   <div class="c">
-    <el-input v-model="tvtaha" placeholder="הזן קוד..."></el-input>
+    <el-input v-model="tvtaha" placeholder="הזן קוד..." ref="input"></el-input>
   </div>
 </template>
 <script>
@@ -20,6 +20,7 @@ export default {
     },
   },
   mounted() {
+    this.$refs.input.focus();
     document.body.style.background = "rgba(35, 33, 33, 0.17)";
   },
 
