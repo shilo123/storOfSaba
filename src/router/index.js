@@ -4,6 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import tashlum from "@/views/productsTashlumView.vue";
 import bakara from "@/views/dafBakara.vue";
 import pratim from "@/views/PirteyHazmana.vue";
+import logco from "@/views/logco.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
     path: "/pratim/:id",
     name: "pratim",
     component: pratim,
+  },
+  {
+    path: "/avtaha",
+    name: "avtaha",
+    component: logco,
   },
 ];
 

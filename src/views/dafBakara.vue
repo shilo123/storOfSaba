@@ -50,9 +50,6 @@
           {{ serchDate(scope.row) }}
         </template>
       </el-table-column>
-      <!-- / -->
-      <!-- <el-table-column label="שם" prop="ishi.Inputshem"></el-table-column> -->
-      <!-- <el-table-column label="שם" prop="ishi.Inputshem"></el-table-column> -->
     </el-table>
 
     <div v-if="shows.showComp">

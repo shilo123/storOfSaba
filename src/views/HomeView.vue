@@ -7,9 +7,9 @@
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.8)"
   >
-    <div style="position: absolute" v-if="false">
-      <router-link to="/Daf-bakara-of-saba-moshe"
-        ><el-button type="primary">click</el-button></router-link
+    <div style="position: absolute" v-if="true">
+      <router-link to="/avtaha"
+        ><el-button type="primary">ניהול</el-button></router-link
       >
     </div>
     <div v-show="shows.showPerut" class="ta" ref="table">
