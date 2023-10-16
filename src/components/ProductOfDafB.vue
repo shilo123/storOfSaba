@@ -13,6 +13,8 @@ export default {
   },
 
   mounted() {
+    {
+    }
     // console.log("dtat", this.dato);
     // console.log(this.num);
   },
