@@ -73,6 +73,7 @@
             ref="ashrai.misparCartis"
           >
             <el-input
+              @input="plusRevahh"
               v-model="ElFrom.ashrai.misparCartis"
               placeholder="מספר כרטיס"
             ></el-input>
@@ -156,6 +157,7 @@ export default {
   props: ["sumco"],
   data() {
     return {
+      count: 0,
       showform: true,
       sumo: "סכום לתשלום :" + this.sumco,
       active: 0,
@@ -395,6 +397,14 @@ export default {
           element.children[1].style.display = "inline-block";
           element.children[1].style.width = "100%";
         });
+      }
+    },
+    plusRevahh() {
+      this.count++;
+      console.log("this.count", this.count);
+      if (this.count === 4) {
+        this.ElFrom.ashrai.misparCartis += " ";
+        this.count = 0;
       }
     },
     harhev(r) {
