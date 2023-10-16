@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div
+    style="width: 100%; height: 100%; position: absolute"
+    v-loading="loading"
+    element-loading-text="Loading..."
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
+  >
     <el-menu :default-active="activos" ref="itemM" mode="horizontal">
       <el-menu-item index="1">הכל</el-menu-item>
       <el-menu-item index="2">ערוך מוצרים באתר</el-menu-item>
@@ -62,6 +68,7 @@ export default {
   name: "StorOfSabaDafBakara",
   data() {
     return {
+      loading: false,
       data: "",
       activos: "1",
       shows: {
@@ -73,11 +80,13 @@ export default {
   },
 
   mounted() {
+    this.loading = true;
     this.$ax.get(URL + "findPritim").then((res) => {
       //   console.log(res.data);
       this.data = res.data;
       this.num = res.data.length;
       this.shows.showComp = false;
+      this.loading = false;
     });
     let chil = this.$refs.itemM.$el.children;
     let widtos = 100 / chil.length;

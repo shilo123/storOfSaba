@@ -1,6 +1,17 @@
 <!-- arrData -->
 <template>
-  <div>
+  <div
+    style="width: 100%; height: 100%; position: absolute"
+    v-loading="loading"
+    element-loading-text="Loading..."
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
+  >
+    <div style="position: absolute">
+      <router-link to="/Daf-bakara-of-saba-moshe"
+        ><el-button type="primary">click</el-button></router-link
+      >
+    </div>
     <div v-show="shows.showPerut" class="ta" ref="table">
       <el-table
         @mouseover="shinuy"
@@ -82,6 +93,7 @@ export default {
       sum: "",
       leberurim: "לבירורים: 0528875848 משה",
       category: [],
+      loading: false,
     };
   },
   watch: {
@@ -92,6 +104,7 @@ export default {
     },
   },
   mounted() {
+    this.loading = true;
     document.body.style.background = "";
     this.$ax.get(URL).then((res) => {
       this.prod = res.data;
@@ -120,6 +133,7 @@ export default {
           window.removeEventListener("mouseup", stop);
         }
       });
+      this.loading = false;
     });
   },
 

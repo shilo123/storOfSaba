@@ -1,5 +1,12 @@
 <template>
-  <div v-if="shogen">
+  <div
+    v-if="shogen"
+    style="width: 100%; height: 100%; position: absolute"
+    v-loading="loading"
+    element-loading-text="Loading..."
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
+  >
     <div class="fixed">
       <el-image :src="logo" fit="cover" class="img"></el-image>
       <VMenu class="ME"></VMenu>
@@ -55,15 +62,18 @@ export default {
       sum: [],
       showComp: false,
       ArrIds: [],
+      loading: false,
     };
   },
 
   mounted() {
+    this.loading = true;
     this.$ax.get(URL).then((res) => {
       this.products = res.data;
       document.body.style.background = "rgb(41, 255, 223)";
       this.sortProduct();
       this.sortprice();
+      this.loading = false;
     });
   },
 
@@ -77,6 +87,7 @@ export default {
         return ids.includes(e._id);
       });
       this.shogen = true;
+      this.loading = false;
     },
     returncategory(n) {
       if (n === "aronotM") {
@@ -127,6 +138,7 @@ export default {
             configurable: true,
           });
         }
+        this.loading = true;
       });
       this.products.forEach((element) => {
         element.priceForInt = element.price;

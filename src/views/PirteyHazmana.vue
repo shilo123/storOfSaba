@@ -1,5 +1,12 @@
 <template>
-  <div v-if="data ? true : false">
+  <div
+    v-if="data ? true : false"
+    style="width: 100%; height: 100%; position: absolute"
+    v-loading="loading"
+    element-loading-text="Loading..."
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
+  >
     <router-link
       to="/Daf-bakara-of-saba-moshe"
       style="position: absolute; top: 0px; z-index: 4000; left: 92%"
@@ -72,10 +79,12 @@ export default {
       arrI: {},
       n: "",
       sum: "",
+      loading: false,
     };
   },
 
   mounted() {
+    this.loading = true;
     this.$ax.get(URL + "findPritim").then((res) => {
       console.log(res.data);
       this.data = res.data;
@@ -113,6 +122,7 @@ export default {
       }, 0);
       //   console.log(sum);
       this.sum = sum;
+      this.loading = false;
     },
   },
 };
