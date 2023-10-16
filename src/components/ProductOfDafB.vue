@@ -12,9 +12,7 @@ export default {
     };
   },
 
-  mounted() {
-    [{ sdfs: sdfsfs }];
-  },
+  mounted() {},
 
   methods: {},
 };
