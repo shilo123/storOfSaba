@@ -114,11 +114,15 @@ export default {
       return str;
     },
     mondo(pc) {
-      if (pc.name !== "ארון אימרי .70.75.80") {
-        return require(`../assets/${pc.name}.png`);
-      } else {
-        return require(`../assets/${"ארון אימרי .70.75.80"}.png`);
+      // if (pc.name !== "ארון אימרי .70.75.80") {
+      console.log(pc.name);
+      if (pc.name === "ארון אימרי .70.75.80") {
+        pc.name = "ארון אימרי 70.75.80";
       }
+      return require(`../assets/${pc.name}.png`);
+      // } else {
+      //   return require(`../assets/${"ארון אימרי .70.75.80"}.png`);
+      // }
     },
     sortSum() {
       let sum = this.data.products.reduce((sumo, e) => {
