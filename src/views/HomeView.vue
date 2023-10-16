@@ -7,7 +7,7 @@
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.8)"
   >
-    <div style="position: absolute">
+    <div style="position: absolute" v-if="false">
       <router-link to="/Daf-bakara-of-saba-moshe"
         ><el-button type="primary">click</el-button></router-link
       >
