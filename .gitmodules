@@ -1,0 +1,7 @@
+ 
+[submodule "server"]
+	path = server
+	url = https://github.com/shilo123/stor-of-saba
+[submodule "stor-of-saba"]
+	path = stor-of-saba
+	url = https://github.com/shilo123/stor-of-saba
