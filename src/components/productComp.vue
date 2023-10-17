@@ -36,6 +36,7 @@
             type="primary"
             style="float: left"
             v-if="$route.path === '/'"
+            @click="showco"
             >מידע נוסף</el-button
           >
         </div>
@@ -82,6 +83,9 @@ export default {
       console.log(ce, elmentRect);
 
       // console.log(He, hordusRect);
+    },
+    showco() {
+      this.$emit("showD", this.prod);
     },
   },
 };

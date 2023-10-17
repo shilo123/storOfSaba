@@ -6,45 +6,62 @@
     element-loading-text="Loading..."
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.8)"
+    ref="divv"
   >
     <div style="position: absolute" v-if="false">
       <router-link to="/avtaha"
         ><el-button type="primary">ניהול</el-button></router-link
       >
     </div>
-    <div v-show="shows.showPerut" class="ta" ref="table">
-      <el-table
-        @mouseover="shinuy"
-        :data="prodactinu"
-        height="200"
-        style="width: 300px"
-      >
-        <!-- :style="styleoftable()" -->
-        <el-table-column label="שם מוצר" prop="name"></el-table-column>
-        <el-table-column label="מחיר" prop="price"></el-table-column>
-        <el-table-column label="הסר">
-          <template slot-scope="scope">
-            <el-button
-              type="danger"
-              size="mini"
-              @click="haserProduct(scope.row)"
-              >הסר מוצר</el-button
-            >
+    <!-- shows.showPerut -->
+    <!-- <div v-show="true" class="ta" ref="table"> -->
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical-demo"
+      :collapse="collapse"
+      style="position: absolute"
+      @open="handleOpen"
+      @close="handleClose"
+      :background-color="negev()"
+      text-color="black"
+      active-text-color="black"
+    >
+      <!-- background-color="rgba(48, 49, 42, 0.879)" -->
+      <el-menu-item index="1" @click="shinuy" v-if="!collapse">
+        <i :class="icono" style="font-size: 30px; color: black"></i>
+      </el-menu-item>
+      <template v-if="!collapse">
+        <el-submenu
+          index="2"
+          v-for="(p, i) in prodactinu"
+          :key="i"
+          style="border: 0.2px solid black; margin-bottom: 3px"
+        >
+          <template slot="title">
+            <span style="color: white">
+              {{ p.name }}
+            </span>
           </template>
-          <!-- style="position: absolute; right: 55px bottom:35px" -->
-        </el-table-column>
-        <el-table-column>
-          <template slot="header">
-            <el-button
-              style="position: relative; bottom: 15px; z-index: 9001"
-              @click="shows.showPerut = false"
+          <el-menu-item-group title="אפשרויות">
+            <el-menu-item @click="haserProduct(p._id)"
+              ><span class="po">הסר מוצר </span></el-menu-item
             >
-              <i class="el-icon-close"></i>
-            </el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-    </div>
+            <el-menu-item
+              ><span class="po">{{ p.price }}</span></el-menu-item
+            >
+            <el-menu-item class="po"> </el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+      </template>
+      <el-menu-item
+        index="3"
+        v-show="collapse"
+        :class="icono"
+        id="item"
+        style="position: absolute; top: 15%; width: 26px"
+        @click="shinuy"
+      ></el-menu-item>
+    </el-menu>
     <div class="mst">
       <el-input
         v-model="leberurim"
@@ -68,9 +85,38 @@
     </div>
     <el-row :gutter="3" class="row">
       <el-col :span="6" v-for="p in prod" :key="p._id">
-        <product :product="p" :sums="sum" @addos="Add"></product>
+        <product
+          :product="p"
+          :sums="sum"
+          @addos="Add"
+          @showD="showcoloco"
+        ></product>
       </el-col>
     </el-row>
+    <el-dialog :title="prodOfC.name" :visible.sync="shows.showDi" width="30%">
+      <div>{{ prodOfC.des }}</div>
+      <img
+        :src="serchPick()"
+        alt=""
+        v-if="shows.showDi"
+        width="200px"
+        height="200px"
+      />
+      <br />
+      <strong>מחיר {{ prodOfC.price }}</strong>
+      <span slot="footer">
+        <el-button type="success" @click="Add(prodOfC._id)"
+          >הוסף מוצר</el-button
+        >
+        <el-button
+          type="danger"
+          @click="shows.showDi = false"
+          style="width: 100px"
+          >צא</el-button
+        >
+      </span>
+      <!-- require(`../assets/${prodOfC.name}.png`) -->
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -84,6 +130,7 @@ export default {
     return {
       shows: {
         showPerut: false,
+        showDi: false,
       },
       logo,
       prod: "",
@@ -94,12 +141,32 @@ export default {
       leberurim: "לבירורים: 0528875848 משה",
       category: [],
       loading: false,
+      collapse: true,
+      prodOfC: "",
+      icono: "el-icon-arrow-right",
     };
   },
   watch: {
     prodactinu(old, val) {
       if (val.length === 0) {
         this.shows.showPerut = false;
+      }
+    },
+    collapse(val) {
+      if (val) {
+        this.icono = "el-icon-arrow-right";
+        document.body.style.background = "#ffdead";
+      } else {
+        setTimeout(() => {
+          this.icono = "el-icon-arrow-down";
+        }, 330);
+        document.body.style.background = "rgba(48, 49, 42, 0.693)";
+        // document.body.style.zIndex = "99999";
+      }
+    },
+    ArrIds(val) {
+      if (val.length === 0) {
+        this.collapse = true;
       }
     },
   },
@@ -110,41 +177,29 @@ export default {
       this.prod = res.data;
       this.data2 = res.data;
       this.sorted();
-      this.$nextTick(() => {
-        let grar = this.$refs.table;
-        let offsetX = 0;
-        let offsetY = 0;
-
-        grar.addEventListener("mousedown", (e) => {
-          offsetX = e.clientX - grar.getBoundingClientRect().left;
-          offsetY = e.clientY - grar.getBoundingClientRect().top;
-
-          window.addEventListener("mousemove", move);
-          window.addEventListener("mouseup", stop);
-        });
-
-        function move(event) {
-          grar.style.left = event.clientX - offsetX + "px";
-          grar.style.top = event.clientY - offsetY + "px";
-        }
-
-        function stop() {
-          window.removeEventListener("mousemove", move);
-          window.removeEventListener("mouseup", stop);
-        }
-      });
-      this.loading = false;
     });
+    this.loading = false;
   },
 
   updated() {},
 
   methods: {
+    mes(p) {
+      this.$notify({
+        title: "מידע",
+        dangerouslyUseHTMLString: true,
+        message: `<strong>המוצר שנוסף: <i>${p.name}</i> </strong>`,
+      });
+    },
     Add(id) {
+      if (this.shows.showDi === true) {
+        this.shows.showDi = false;
+      }
       this.ArrIds.push(id);
       let prodactOne = this.prod.find((e) => {
         return e._id === id;
       });
+      this.mes(prodactOne);
       this.prodactinu.push(prodactOne);
       this.sum = this.prodactinu.reduce((sum, item) => {
         return +sum + +item.price;
@@ -175,11 +230,21 @@ export default {
       });
       // }
     },
-    haserProduct(producto) {
+    haserProduct(id) {
       let i = this.prodactinu.findIndex((e) => {
-        return e._id === producto._id;
+        return e._id === id;
       });
+      console.log(i);
       this.prodactinu.splice(i, 1);
+      if (this.prodactinu.length > 0) {
+        let ix = this.ArrIds.findIndex((e) => {
+          return e === this.prodactinu[i]._id;
+        });
+
+        this.ArrIds.splice(ix, 1);
+      } else {
+        this.ArrIds = [];
+      }
     },
     valid() {
       this.leberurim = "לבירורים: 0528875848 משה";
@@ -193,7 +258,33 @@ export default {
       }
     },
     shinuy() {
-      this.hover = true;
+      if (this.prodactinu.length > 0) {
+        this.collapse = !this.collapse;
+      } else {
+        this.$message("לא בחרת כלום");
+        this.collapse = true;
+      }
+    },
+    handleOpen() {
+      this.$message("open");
+    },
+    handleClose() {
+      this.$message("close");
+    },
+    showcoloco(prodOfC) {
+      this.shows.showDi = true;
+      this.prodOfC = prodOfC;
+    },
+    serchPick() {
+      console.log(this.prodOfC.name);
+      return require(`../assets/${this.prodOfC.name}.png`);
+    },
+    negev() {
+      if (this.collapse) {
+        return "rgb(224, 210, 210)";
+      } else {
+        return "rgba(48, 49, 42, 0.879)";
+      }
     },
   },
 };
@@ -212,7 +303,27 @@ export default {
   left: 70%;
 }
 body {
-  background: rgba(255, 0, 0, 0.219);
+  background: rgba(48, 49, 42, 0.693);
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 900px;
+  z-index: 3000;
+}
+.el-menu--collapse {
+  width: 40px;
+  min-height: 280%;
+  color: aliceblue;
+  z-index: 5000;
+}
+.po {
+  color: rgb(127, 127, 112);
+}
+#item {
+  background: rgb(224, 210, 210) !important;
+}
+#item:hover {
+  background: rgba(224, 210, 210, 0.558) !important;
 }
 </style>
 <style>
