@@ -1,14 +1,38 @@
 <!-- cild -->
 <template>
   <div>
+    <i
+      class="el-icon-check"
+      style="font-size: 60px; color: red"
+      v-show="showVi"
+    ></i>
+    <el-button
+      type="success"
+      v-if="routeP()"
+      @click="updateProducts"
+      v-show="!showVi"
+      >שמור פריט</el-button
+    >
     <el-card class="box" ref="box">
-      <div class="title">{{ prod.name }}</div>
+      <div class="title" v-if="IfHomeAndTashlum()">{{ prod.name }}</div>
+      <el-input
+        v-model="UP.upName"
+        placeholder="עדכן את שם המוצר"
+        v-if="routeP()"
+      ></el-input>
       <!-- arrData
       ></div> -->
       <div class="child" ref="child">
-        <div class="des">
+        <!-- $route.path === '/' || $route.path.startsWith('/tashlum/') -->
+        <div class="des" v-if="IfHomeAndTashlum()">
           {{ prod.des }}
         </div>
+        <el-input
+          v-model="UP.upDes"
+          placeholder="עדכן את תיאור המוצר"
+          v-if="routeP()"
+        ></el-input>
+
         <div>
           <img
             class="imgf"
@@ -23,7 +47,16 @@
           <span class="val">{{ prod.price }}₪</span
           ><span class="key">:מחיר</span>
         </div>
-        <div style="display: flex; position: relative; left: 32px">
+        <el-input
+          v-model="UP.upPrice"
+          placeholder="עדכן את מחיר המוצר"
+          v-if="routeP()"
+        ></el-input>
+
+        <div
+          style="display: flex; position: relative; left: 32px"
+          v-if="IfHomeAndTashlum()"
+        >
           <el-button
             type="success"
             ref="b"
@@ -45,23 +78,37 @@
   </div>
 </template>
 <script>
+import { URL } from "@/URL/url";
+
 export default {
   name: "StorOfSabaProduct",
   props: ["product", "sums"],
 
   data() {
     return {
+      showVi: false,
       sum: this.sums,
       file: "",
       prod: this.product,
       Marginos: "280",
       arrEl: [],
+      UP: {
+        upName: "",
+        upDes: "",
+        upPrice: "",
+      },
     };
   },
   computed: {},
   mounted() {
+    this.UP.upName = this.prod.name;
+    this.UP.upDes = this.prod.des;
+    this.UP.upPrice = this.prod.price;
     // console.log(this.prod.name);
-    this.file = require(`../assets/${this.prod.name}.png`);
+    if (this.prod.name === "ארון אימרי 70.75.80") {
+      this.prod.name = "ארון אימרי .70.75.80";
+    }
+    this.file = require(`../assets/${this.prod.imageName}.png`);
     // this.sortB();
   },
 
@@ -86,6 +133,27 @@ export default {
     },
     showco() {
       this.$emit("showD", this.prod);
+    },
+    IfHomeAndTashlum() {
+      return (
+        this.$route.path === "/" || this.$route.path.startsWith("/tashlum/")
+      );
+    },
+    routeP() {
+      return this.$route.path === "/Daf-bakara-of-saba-moshe";
+    },
+    updateProducts() {
+      this.$ax
+        .post(URL + "upPr", { up: this.UP, id: this.prod._id })
+        .then((res) => {
+          if (res.data) {
+            this.$message.success("הפריט נשמר");
+            this.showVi = true;
+            setTimeout(() => {
+              this.showVi = false;
+            }, 2000);
+          }
+        });
     },
   },
 };

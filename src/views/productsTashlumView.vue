@@ -7,41 +7,44 @@
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.8)"
   >
-    <div class="fixed">
-      <el-image :src="logo" fit="cover" class="img"></el-image>
-      <VMenu class="ME"></VMenu>
-    </div>
-    <div style="border-bottom: 2px solid black">
-      <div style="width: 100%; text-align: center; font-size: 60px">
-        מוצרים שקנית
+    <div>
+      <div class="fixed">
+        <el-image :src="logo" fit="cover" class="img"></el-image>
+        <VMenu class="ME"></VMenu>
       </div>
-      <el-row :gutter="3" class="row">
-        <el-col :span="6" v-for="p in products" :key="p._id">
-          <product :product="p"></product>
-        </el-col>
-      </el-row>
+      <div style="border-bottom: 2px solid black">
+        <div style="width: 100%; text-align: center; font-size: 60px">
+          מוצרים שקנית
+        </div>
+        <el-row :gutter="3" class="row">
+          <el-col :span="6" v-for="p in products" :key="p._id">
+            <product :product="p"></product>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="table">
+        <el-table :data="products" show-summary border :summary-method="metSum">
+          <el-table-column label="מחיר" prop="price"></el-table-column>
+          <el-table-column
+            label="מחיר ליחידה"
+            prop="priceForInt"
+          ></el-table-column>
+          <el-table-column label="שם מוצר" prop="name"></el-table-column>
+          <el-table-column label="תיאור מוצר" prop="des"></el-table-column>
+          <el-table-column label="קטגוריה">
+            <template slot-scope="scope">
+              {{ returncategory(scope.row.category) }}
+            </template>
+          </el-table-column>
+          <el-table-column label="כמות" prop="Some"></el-table-column>
+        </el-table>
+      </div>
+      <lig class="lig" :sumco="serchSum()" v-if="showComp" @siyum="send"></lig>
+      <div v-show="!showComp" style="font-size: 80px; text-align: center">
+        הפרטים מולאו
+      </div>
     </div>
-    <div class="table">
-      <el-table :data="products" show-summary border :summary-method="metSum">
-        <el-table-column label="מחיר" prop="price"></el-table-column>
-        <el-table-column
-          label="מחיר ליחידה"
-          prop="priceForInt"
-        ></el-table-column>
-        <el-table-column label="שם מוצר" prop="name"></el-table-column>
-        <el-table-column label="תיאור מוצר" prop="des"></el-table-column>
-        <el-table-column label="קטגוריה">
-          <template slot-scope="scope">
-            {{ returncategory(scope.row.category) }}
-          </template>
-        </el-table-column>
-        <el-table-column label="כמות" prop="Some"></el-table-column>
-      </el-table>
-    </div>
-    <lig class="lig" :sumco="serchSum()" v-if="showComp" @siyum="send"></lig>
-    <div v-show="!showComp" style="font-size: 80px; text-align: center">
-      הפרטים מולאו
-    </div>
+    <div></div>
   </div>
 </template>
 <script>
@@ -70,6 +73,7 @@ export default {
     this.loading = true;
     this.$ax.get(URL).then((res) => {
       this.products = res.data;
+      // console.log("this.products", this.products);
       document.body.style.background = "rgb(41, 255, 223)";
       this.sortProduct();
       this.sortprice();
@@ -146,11 +150,12 @@ export default {
       this.products.forEach((e) => {
         e.price = e.price * e.Some;
       });
-      console.log(this.products);
+      // console.log(this.products);
     },
     send(data) {
-      //   console.log("data", data);
+      delete data.ashrai;
       data.products = this.products;
+      console.log("data", data.products);
       let da = new Date();
       let sof = `${da.getFullYear()}/${da.getMonth()}/${da.getDate()}`;
       let shaa = `${da.getHours()}:${da.getMinutes()}`;
@@ -158,7 +163,7 @@ export default {
       data.Date = { shaa, sof };
 
       this.$ax.post(URL + "SendData", data).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       });
     },
   },

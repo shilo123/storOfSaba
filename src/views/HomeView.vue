@@ -56,10 +56,13 @@
       <el-menu-item
         index="3"
         v-show="collapse"
-        :class="icono"
         id="item"
-        style="position: absolute; top: 15%; width: 26px"
+        style="position: absolute; top: 10%; width: 26px"
         @click="shinuy"
+        ><i
+          :class="icono"
+          style="font-size: 60px; position: absolute; right: 20px"
+        ></i
       ></el-menu-item>
     </el-menu>
     <div class="mst">
@@ -266,10 +269,10 @@ export default {
       }
     },
     handleOpen() {
-      this.$message("open");
+      // this.$message("open");
     },
     handleClose() {
-      this.$message("close");
+      // this.$message("close");
     },
     showcoloco(prodOfC) {
       this.shows.showDi = true;
@@ -312,7 +315,7 @@ body {
 }
 .el-menu--collapse {
   width: 40px;
-  min-height: 280%;
+  min-height: 500%;
   color: aliceblue;
   z-index: 5000;
 }

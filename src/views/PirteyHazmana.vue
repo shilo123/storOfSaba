@@ -12,7 +12,7 @@
       style="position: absolute; top: 0px; z-index: 4000; left: 92%"
       ><el-button type="primary">חזור לדף הקודם</el-button></router-link
     >
-    <el-table :data="arrD">
+    <el-table :data="arrD" v-if="false">
       <el-table-column label="פרטי אשראי">
         <el-table-column label="מספר כרטיס" prop="misparCartis">
         </el-table-column>
@@ -84,10 +84,14 @@ export default {
   },
 
   mounted() {
+    //validity
+    document.body.style.background = "rgba(35, 33, 33, 0.17)";
+
     this.loading = true;
     this.$ax.get(URL + "findPritim").then((res) => {
       console.log(res.data);
       this.data = res.data;
+      console.log(this.data);
       let id = this.$route.params.id;
       this.data = this.data.find((e) => {
         return e._id === id;
@@ -115,11 +119,7 @@ export default {
     },
     mondo(pc) {
       // if (pc.name !== "ארון אימרי .70.75.80") {
-      console.log(pc.name);
-      if (pc.name === "ארון אימרי .70.75.80") {
-        pc.name = "ארון אימרי 70.75.80";
-      }
-      return require(`../assets/${pc.name}.png`);
+      return require(`../assets/${pc.imageName}.png`);
       // } else {
       //   return require(`../assets/${"ארון אימרי .70.75.80"}.png`);
       // }

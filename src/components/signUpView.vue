@@ -1,11 +1,15 @@
 <template>
   <div>
-    <el-button type="primary" @click="auto" v-if="false"
+    <el-button type="primary" @click="auto" v-if="true"
       >מילוי אוטומטי</el-button
     >
     <el-button type="primary" @click="del" v-if="false">מחיקת הכל</el-button>
     <div class="stepo" ref="step">
-      <el-button type="primary" class="but" @click="active = active - 1">
+      <el-button
+        type="primary"
+        class="but"
+        @click="active !== 0 ? (active = active - 1) : (active = 0)"
+      >
         <i class="el-icon-back"></i>חזור לשלב הקודם</el-button
       >
       <el-steps :space="360" :active="active" finish-status="success">
