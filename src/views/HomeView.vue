@@ -7,7 +7,7 @@
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.8)"
   >
-    <div style="position: absolute" v-if="true">
+    <div style="position: absolute" v-if="false">
       <router-link to="/avtaha"
         ><el-button type="primary">ניהול</el-button></router-link
       >
