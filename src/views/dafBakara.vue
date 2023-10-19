@@ -106,12 +106,16 @@
               v-model="mosif.desProduct"
               placeholder="הקלד תיאור המוצר"
             ></el-input>
-            <el-upload :action="`${URL}insertProduct`" :on-success="onFile">
+            <el-upload :action="`${url}insertProduct`" :on-success="onFile">
               <el-button type="warning">העלה תמונה</el-button>
             </el-upload>
             <el-input
               v-model="mosif.priceProduct"
               placeholder="הקלד מחיר המוצר"
+            ></el-input>
+            <el-input
+              v-model="mosif.categoryProduct"
+              placeholder="שם הקטגוריה"
             ></el-input>
             <el-button
               type="success"
@@ -134,10 +138,13 @@ export default {
   name: "StorOfSabaDafBakara",
   data() {
     return {
+      url: URL,
       mosif: {
         nameProduct: "",
         desProduct: "",
         priceProduct: "",
+        categoryProduct: "",
+
         Img: "",
       },
       products: "",
@@ -231,7 +238,7 @@ export default {
     let da = new Date();
     let sof = `${da.getFullYear()}/${da.getMonth()}/${da.getDate()}`;
     this.date = sof;
-    console.log(this.date);
+    // console.log(this.date);
     this.loading = true;
     this.$ax.get(URL + "findPritim").then((res) => {
       //   console.log(res.data);
@@ -255,7 +262,7 @@ export default {
         } else {
           element.neW = false;
         }
-        console.log(this.data);
+        // console.log(this.data);
       });
       let arr = [];
       this.data.forEach((element) => {
@@ -342,10 +349,18 @@ export default {
         return this.value;
       }
     },
-    hosefProducts() {},
-  },
-  onFile(res) {
-    console.log(res);
+    onFile(res) {
+      this.mosif.Img = res;
+    },
+    hosefProducts() {
+      this.$ax.post(URL + "insertos", this.mosif).then((res) => {
+        console.log(res);
+        this.$message({
+          dangerouslyUseHTMLString: true,
+          message: `<strong>המוצר <i>${this.mosif.nameProduct}</i>נוסף לאתר</strong>`,
+        });
+      });
+    },
   },
 };
 </script>

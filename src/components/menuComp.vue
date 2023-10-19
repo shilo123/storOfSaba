@@ -106,6 +106,9 @@ export default {
       if (n === "miklahonim") {
         return "מקלחונים";
       }
+      if (n !== "aronotM" || n !== "birzeyM" || n !== "miklahonim") {
+        return n;
+      }
       if (n === "הכל") {
         return n;
       }

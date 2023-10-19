@@ -279,7 +279,7 @@ export default {
       this.prodOfC = prodOfC;
     },
     serchPick() {
-      return `${this.prodOfC.imageName}.png`;
+      return `${this.prodOfC.imageName}`;
     },
     negev() {
       if (this.collapse) {

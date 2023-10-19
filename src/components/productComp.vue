@@ -1,19 +1,21 @@
 <!-- cild -->
 <template>
   <div>
-    <i
-      class="el-icon-check"
-      style="font-size: 60px; color: red"
-      v-show="showVi"
-    ></i>
-    <el-button
-      type="success"
-      v-if="routeP()"
-      @click="updateProducts"
-      v-show="!showVi"
-      >שמור פריט</el-button
-    >
     <el-card class="box" ref="box">
+      <div>
+        <i
+          class="el-icon-check"
+          style="font-size: 60px; color: red"
+          v-show="showVi"
+        ></i>
+        <el-button
+          type="success"
+          v-if="routeP()"
+          @click="updateProducts"
+          v-show="!showVi"
+          >שמור פריט</el-button
+        >
+      </div>
       <div class="title" v-if="IfHomeAndTashlum()">{{ prod.name }}</div>
       <el-input
         v-model="UP.upName"
@@ -21,7 +23,7 @@
         v-if="routeP()"
       ></el-input>
       <!-- arrData
-      ></div> -->
+          ></div> -->
       <div class="child" ref="child">
         <!-- $route.path === '/' || $route.path.startsWith('/tashlum/') -->
         <div class="des" v-if="IfHomeAndTashlum()">
@@ -40,7 +42,7 @@
             alt="loading..."
             width="270px"
             height="270px
-        "
+              "
           />
         </div>
         <div class="pr" v-if="$route.path === '/'">
@@ -74,6 +76,37 @@
           >
         </div>
       </div>
+      <div>
+        <i
+          class="el-icon-check"
+          style="font-size: 60px; color: red"
+          v-show="showVi2"
+        ></i>
+        <el-popover
+          placement="top"
+          width="160"
+          v-model="visible"
+          v-if="routeP()"
+        >
+          <p>אתה בטוח שאתה רוצה למחוק את המוצר?</p>
+          <div style="text-align: right; margin: 0">
+            <el-button size="mini" type="text" @click="visible = false"
+              >לא</el-button
+            >
+            <el-button type="primary" size="mini" @click="DelProducts"
+              >כן</el-button
+            >
+          </div>
+
+          <el-button
+            slot="reference"
+            type="danger"
+            v-if="routeP()"
+            v-show="!showVi2"
+            >מחק פריט</el-button
+          >
+        </el-popover>
+      </div>
     </el-card>
   </div>
 </template>
@@ -86,6 +119,8 @@ export default {
 
   data() {
     return {
+      visible: true,
+      showVi2: false,
       showVi: false,
       sum: this.sums,
       file: "",
@@ -109,8 +144,11 @@ export default {
       this.prod.name = "ארון אימרי .70.75.80";
     }
     // this.file = require(`../assets/${this.prod.imageName}.png`);
-    this.file = this.prod.imageName + ".png";
+    this.file = this.prod.imageName;
+    // console.log(this.this.prod.);
     // this.sortB();
+    // let box = this.$refs.box.$el;
+    // console.log(box.clientHeight);
   },
 
   methods: {
@@ -156,6 +194,16 @@ export default {
           }
         });
     },
+    DelProducts() {
+      this.visible = false;
+      this.$ax.delete(URL + "Delprod/" + this.prod._id).then((res) => {
+        console.log(res.data);
+        this.$message({
+          dangerouslyUseHTMLString: true,
+          message: `<strong>המוצר <i>${this.prod.name}</i> הוסר מהאתר</strong>`,
+        });
+      });
+    },
   },
 };
 </script>
@@ -170,7 +218,7 @@ export default {
   margin-left: 0%;
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 513px;
   /* height: 550px; */
   justify-content: space-between;
 }
