@@ -14,7 +14,7 @@
         >
         <el-menu-item index="4" @click="filternew()">
           <el-badge
-            :value="value"
+            :value="serchValue()"
             type="primary"
             style="position: absolute; left: 80%; top: -20px"
           >
@@ -82,6 +82,45 @@
         <el-col :span="6" v-for="p in products" :key="p._id">
           <product :product="p"></product>
         </el-col>
+        <el-col :span="6" v-if="!shows.showYetzira">
+          <div class="hosef">
+            <span>
+              <el-button
+                type="warning"
+                plain
+                class="hosef-text"
+                @click="shows.showYetzira = true"
+              >
+                הוסף מוצר לחנות
+              </el-button>
+            </span>
+          </div>
+        </el-col>
+        <el-col :span="6" v-if="shows.showYetzira">
+          <el-card class="cox">
+            <el-input
+              v-model="mosif.nameProduct"
+              placeholder="הקלד שם המוצר"
+            ></el-input>
+            <el-input
+              v-model="mosif.desProduct"
+              placeholder="הקלד תיאור המוצר"
+            ></el-input>
+            <el-upload :action="`${URL}insertProduct`" :on-success="onFile">
+              <el-button type="warning">העלה תמונה</el-button>
+            </el-upload>
+            <el-input
+              v-model="mosif.priceProduct"
+              placeholder="הקלד מחיר המוצר"
+            ></el-input>
+            <el-button
+              type="success"
+              style="margin-top: 15px"
+              @click="hosefProducts"
+              >הוסף מוצר</el-button
+            >
+          </el-card>
+        </el-col>
       </el-row>
     </div>
   </div>
@@ -95,6 +134,12 @@ export default {
   name: "StorOfSabaDafBakara",
   data() {
     return {
+      mosif: {
+        nameProduct: "",
+        desProduct: "",
+        priceProduct: "",
+        Img: "",
+      },
       products: "",
       loading: false,
       data: "",
@@ -102,6 +147,7 @@ export default {
       activos: "1",
       shows: {
         showComp: false,
+        showYetzira: false,
       },
       counter: 0,
       num: "",
@@ -289,14 +335,57 @@ export default {
       this.shows.showComp = false;
       this.data = this.data2;
     },
+    serchValue() {
+      if (this.value === 0) {
+        return "אין הזמנות מהיום";
+      } else {
+        return this.value;
+      }
+    },
+    hosefProducts() {},
+  },
+  onFile(res) {
+    console.log(res);
   },
 };
 </script>
 <style scoped>
+.cox {
+  border-radius: 16px;
+  padding: 0px 30px 30px 30px;
+  width: 300px;
+  background: #78aca6;
+  margin-bottom: 10px;
+  margin-left: 0%;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  height: 440px;
+  justify-content: space-between;
+  position: relative;
+  top: 40px;
+  justify-content: center; /* מרכז אופקי */
+  align-items: center; /* מרכז אנכי */
+}
 .el-menuc {
   display: flex;
 }
 .select {
   width: 140px;
+}
+.hosef {
+  position: relative;
+  top: 40px;
+  height: 100px;
+  background: #78aca6;
+  display: flex;
+  justify-content: center; /* מרכז אופקי */
+  align-items: center; /* מרכז אנכי */
+  border-radius: 20px;
+  height: 440px;
+}
+.hosef-text {
+  font-size: 40px;
+  height: 100px;
 }
 </style>

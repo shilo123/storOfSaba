@@ -108,7 +108,8 @@ export default {
     if (this.prod.name === "ארון אימרי 70.75.80") {
       this.prod.name = "ארון אימרי .70.75.80";
     }
-    this.file = require(`../assets/${this.prod.imageName}.png`);
+    // this.file = require(`../assets/${this.prod.imageName}.png`);
+    this.file = this.prod.imageName + ".png";
     // this.sortB();
   },
 

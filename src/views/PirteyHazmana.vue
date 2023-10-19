@@ -119,7 +119,7 @@ export default {
     },
     mondo(pc) {
       // if (pc.name !== "ארון אימרי .70.75.80") {
-      return require(`../assets/${pc.imageName}.png`);
+      return `${pc.imageName}.png`;
       // } else {
       //   return require(`../assets/${"ארון אימרי .70.75.80"}.png`);
       // }

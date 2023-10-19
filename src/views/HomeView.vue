@@ -191,7 +191,7 @@ export default {
       this.$notify({
         title: "מידע",
         dangerouslyUseHTMLString: true,
-        message: `<strong>המוצר שנוסף: <i>${p.name}</i> </strong>`,
+        message: `<strong>המוצר שנוסף: <i>${p.name}</i> </strong><br><i>לפירוט קנייה לחץ על החץ שבצד שמאל</i>`,
       });
     },
     Add(id) {
@@ -279,8 +279,7 @@ export default {
       this.prodOfC = prodOfC;
     },
     serchPick() {
-      console.log(this.prodOfC.name);
-      return require(`../assets/${this.prodOfC.name}.png`);
+      return `${this.prodOfC.imageName}.png`;
     },
     negev() {
       if (this.collapse) {
