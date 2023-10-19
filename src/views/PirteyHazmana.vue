@@ -57,7 +57,7 @@
       <el-card v-for="(pc, i) in data.products" :key="i" class="card">
         <div>{{ pc.name }}</div>
         <div>
-          <img :src="pc.imageName" width="300px" height="300px" />
+          <img :src="mondo(pc)" width="300px" height="300px" />
         </div>
         <div>₪{{ pc.priceForInt }} :מחיר ליחידה</div>
         <div style="font-size: 40px; margin-bottom: 10px">₪{{ pc.price }}</div>
@@ -85,7 +85,6 @@ export default {
 
   mounted() {
     //validity
-    alert();
     document.body.style.background = "rgba(35, 33, 33, 0.17)";
 
     this.loading = true;
@@ -120,6 +119,7 @@ export default {
     },
     mondo(pc) {
       // if (pc.name !== "ארון אימרי .70.75.80") {
+      console.log(pc);
       return `${pc.imageName}`;
       // } else {
       //   return require(`../assets/${"ארון אימרי .70.75.80"}.png`);
