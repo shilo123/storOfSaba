@@ -198,7 +198,7 @@ export default {
       this.visible = false;
       this.$ax.delete(URL + "Delprod/" + this.prod._id).then((res) => {
         console.log(res.data);
-        this.$message({
+        this.$message.success({
           dangerouslyUseHTMLString: true,
           message: `<strong>המוצר <i>${this.prod.name}</i> הוסר מהאתר</strong>`,
         });

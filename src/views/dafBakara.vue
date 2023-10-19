@@ -355,7 +355,7 @@ export default {
     hosefProducts() {
       this.$ax.post(URL + "insertos", this.mosif).then((res) => {
         console.log(res);
-        this.$message({
+        this.$message.success({
           dangerouslyUseHTMLString: true,
           message: `<strong>המוצר <i>${this.mosif.nameProduct}</i>נוסף לאתר</strong>`,
         });
