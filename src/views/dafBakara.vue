@@ -168,6 +168,9 @@ export default {
     };
   },
   watch: {
+    "shows.showComp"(val) {
+      // alert(val);
+    },
     activos(val) {
       alert(val);
       if (val === "2") {
@@ -353,13 +356,27 @@ export default {
       this.mosif.Img = res;
     },
     hosefProducts() {
-      this.$ax.post(URL + "insertos", this.mosif).then((res) => {
-        console.log(res);
-        this.$message.success({
-          dangerouslyUseHTMLString: true,
-          message: `<strong>המוצר <i>${this.mosif.nameProduct}</i>נוסף לאתר</strong>`,
+      if (
+        this.mosif.nameProduct !== "" &&
+        this.mosif.desProduct !== "" &&
+        this.mosif.categoryProduct !== "" &&
+        this.mosif.priceProduct !== ""
+      ) {
+        this.$ax.post(URL + "insertos", this.mosif).then((res) => {
+          console.log(res);
+          this.$message.success({
+            dangerouslyUseHTMLString: true,
+            message: `<strong>המוצר <i>${this.mosif.nameProduct}</i>נוסף לאתר</strong>`,
+          });
+
+          window.location.reload();
         });
-      });
+      } else {
+        this.$message.error({
+          dangerouslyUseHTMLString: true,
+          message: `<strong style="font-size:19px"> יש למלא את כל השדות</strong>`,
+        });
+      }
     },
   },
 };

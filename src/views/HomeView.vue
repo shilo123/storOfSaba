@@ -25,6 +25,7 @@
       :background-color="negev()"
       text-color="black"
       active-text-color="black"
+      @mouseover="over()"
     >
       <!-- background-color="rgba(48, 49, 42, 0.879)" -->
       <el-menu-item index="1" @click="shinuy" v-if="!collapse">
@@ -187,6 +188,9 @@ export default {
   updated() {},
 
   methods: {
+    over() {
+      alert();
+    },
     mes(p) {
       this.$notify({
         title: "מידע",
@@ -210,6 +214,7 @@ export default {
       // console.log("this.prodactinu", this.prodactinu);
       if (this.ArrIds.length > 0) {
         this.shows.showPerut = true;
+        this.collapse = false;
       } else {
         this.shows.showPerut = false;
       }

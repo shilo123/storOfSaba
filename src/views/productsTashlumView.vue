@@ -37,6 +37,16 @@
             </template>
           </el-table-column>
           <el-table-column label="כמות" prop="Some"></el-table-column>
+          <el-table-column label="מחק מוצר מהרשימה">
+            <template slot-scope="scope">
+              <el-button
+                type="danger"
+                @click="delPr(scope.row._id)"
+                size="medium"
+                >מחק</el-button
+              >
+            </template>
+          </el-table-column>
         </el-table>
       </div>
       <lig class="lig" :sumco="serchSum()" v-if="showComp" @siyum="send"></lig>
@@ -151,6 +161,15 @@ export default {
         e.price = e.price * e.Some;
       });
       // console.log(this.products);
+    },
+    delPr(id) {
+      // console.log("products", this.products);
+      // console.log(id);
+      let index = this.products.findIndex((e) => {
+        return e._id === id;
+      });
+      this.products.splice(index, 1);
+      // console.log(index);
     },
     send(data) {
       delete data.ashrai;
