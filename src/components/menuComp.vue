@@ -4,7 +4,7 @@
       :default-active="activeI"
       class="menu"
       mode="horizontal"
-      background-color="rgb(4, 113, 66)"
+      background-color="rgba(205, 104, 70)"
       text-color="white"
       active-text-color="white"
       ref="itemM"

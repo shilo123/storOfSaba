@@ -9,6 +9,7 @@
         type="primary"
         class="but"
         @click="active !== 0 ? (active = active - 1) : (active = 0)"
+        size="mini"
       >
         <i class="el-icon-back"></i>חזור לשלב הקודם</el-button
       >

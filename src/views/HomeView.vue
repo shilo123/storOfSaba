@@ -25,7 +25,7 @@
       :background-color="negev()"
       text-color="black"
       active-text-color="black"
-      @mouseover="over()"
+      @mouseover="mouse()"
     >
       <!-- background-color="rgba(48, 49, 42, 0.879)" -->
       <el-menu-item index="1" @click="shinuy" v-if="!collapse">
@@ -58,8 +58,10 @@
         index="3"
         v-show="collapse"
         id="item"
-        style="position: absolute; top: 10%; width: 26px"
+        style="position: absolute; top: 10%; width: 3px; right: -5px"
+        :style="{ /*left: mouseX + 'px',*/ top: mouseY + 'px' }"
         @click="shinuy"
+        ref="itemoscy12"
         ><i
           :class="icono"
           style="font-size: 60px; position: absolute; right: 20px"
@@ -148,6 +150,9 @@ export default {
       collapse: true,
       prodOfC: "",
       icono: "el-icon-arrow-right",
+      mouseX: "",
+      mouseY: "",
+      ev: "",
     };
   },
   watch: {
@@ -175,6 +180,7 @@ export default {
     },
   },
   mounted() {
+    document.addEventListener("mousemove", this.trackMouse);
     this.loading = true;
     document.body.style.background = "";
     this.$ax.get(URL).then((res) => {
@@ -188,9 +194,11 @@ export default {
   updated() {},
 
   methods: {
-    over() {
-      alert();
+    trackMouse(event) {
+      this.mouseX = event.clientX;
+      this.mouseY = event.clientY;
     },
+    mouse() {},
     mes(p) {
       this.$notify({
         title: "מידע",
@@ -318,7 +326,7 @@ body {
   z-index: 3000;
 }
 .el-menu--collapse {
-  width: 40px;
+  width: 20px;
   min-height: 500%;
   color: aliceblue;
   z-index: 5000;
@@ -327,6 +335,7 @@ body {
   color: rgb(127, 127, 112);
 }
 #item {
+  width: -4% !important;
   background: rgb(224, 210, 210) !important;
 }
 #item:hover {

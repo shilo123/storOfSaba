@@ -80,6 +80,7 @@ export default {
   },
 
   mounted() {
+    document.body.style.height = "2180px";
     this.loading = true;
     this.$ax.get(URL).then((res) => {
       this.products = res.data;

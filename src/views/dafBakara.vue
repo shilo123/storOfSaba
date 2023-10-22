@@ -101,10 +101,12 @@
             <el-input
               v-model="mosif.nameProduct"
               placeholder="הקלד שם המוצר"
+              clearable
             ></el-input>
             <el-input
               v-model="mosif.desProduct"
               placeholder="הקלד תיאור המוצר"
+              clearable
             ></el-input>
             <el-upload :action="`${url}insertProduct`" :on-success="onFile">
               <el-button type="warning">העלה תמונה</el-button>
@@ -114,12 +116,14 @@
               controls-position="right"
               v-model="mosif.priceProduct"
               placeholder="הקלד מחיר המוצר"
+              clearable
             ></el-input-number>
             <el-input
               v-model="mosif.categoryProduct"
               placeholder="שם הקטגוריה"
               @focus="shows.showOpCates = true"
               @blur="asyncfilter"
+              clearable
             ></el-input>
             <div class="triangle" v-show="shows.showOpCates"></div>
             <div
@@ -337,7 +341,7 @@ export default {
     asyncfilter() {
       setTimeout(() => {
         this.shows.showOpCates = false;
-      }, 1000);
+      }, 330);
     },
     bodek(c) {
       this.mosif.categoryProduct = c;

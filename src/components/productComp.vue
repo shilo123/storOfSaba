@@ -213,7 +213,8 @@ export default {
   padding: 0px 30px 30px 30px;
   /* height: auto; */
   width: 300px;
-  background: #78aca6;
+  background: #f1e9e9;
+  /* background: #78aca6; */
   margin-bottom: 10px;
   margin-left: 0%;
   display: flex;
