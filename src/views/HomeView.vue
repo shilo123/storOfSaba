@@ -123,6 +123,7 @@
       </span>
       <!-- require(`../assets/${prodOfC.name}.png`) -->
     </el-dialog>
+    <hazeshelhalemata class="posham" :prod="prod"></hazeshelhalemata>
   </div>
 </template>
 <script>
@@ -130,8 +131,9 @@ import { URL } from "@/URL/url";
 import VMenug from "@/components/menuComp.vue";
 import product from "@/components/productComp.vue";
 import logo from "@/assets/logo.png";
+import hazeshelhalemata from "@/components/lemata.vue";
 export default {
-  components: { VMenug, product },
+  components: { VMenug, product, hazeshelhalemata },
   data() {
     return {
       shows: {
@@ -180,6 +182,7 @@ export default {
     },
   },
   mounted() {
+    document.body.style.height = "";
     document.addEventListener("mousemove", this.trackMouse);
     this.loading = true;
     document.body.style.background = "";
@@ -305,6 +308,16 @@ export default {
 };
 </script>
 <style scoped>
+.posham {
+  background: rgba(20, 68, 244, 0.455);
+  width: 98%;
+  text-align: right;
+  height: auto;
+  padding: 10px;
+  position: absolute;
+  border: 2px solid black;
+  left: 10px;
+}
 .img {
   border-bottom: 2px solid black;
   width: 100%;
@@ -327,7 +340,7 @@ body {
 }
 .el-menu--collapse {
   width: 20px;
-  min-height: 500%;
+  min-height: 300%;
   color: aliceblue;
   z-index: 5000;
 }
