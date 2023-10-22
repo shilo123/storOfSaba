@@ -172,8 +172,12 @@ export default {
       // console.log(index);
     },
     send(data) {
-      delete data.ashrai;
+      data.sum = this.sum;
       data.products = this.products;
+      this.$ax.post(URL + "sendMail", data).then((res) => {
+        console.log(res);
+      });
+      delete data.ashrai;
       console.log("data", data.products);
       let da = new Date();
       let sof = `${da.getFullYear()}/${da.getMonth()}/${da.getDate()}`;

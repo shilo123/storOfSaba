@@ -109,14 +109,28 @@
             <el-upload :action="`${url}insertProduct`" :on-success="onFile">
               <el-button type="warning">העלה תמונה</el-button>
             </el-upload>
-            <el-input
+            <el-input-number
+              style="width: 100%"
+              controls-position="right"
               v-model="mosif.priceProduct"
               placeholder="הקלד מחיר המוצר"
-            ></el-input>
+            ></el-input-number>
             <el-input
               v-model="mosif.categoryProduct"
               placeholder="שם הקטגוריה"
+              @focus="shows.showOpCates = true"
+              @blur="asyncfilter"
             ></el-input>
+            <div class="triangle" v-show="shows.showOpCates"></div>
+            <div
+              class="opCates"
+              v-for="c in category"
+              :key="c"
+              v-show="shows.showOpCates"
+              @click="bodek(c)"
+            >
+              <span style="position: relative; top: 21%">{{ c }}</span>
+            </div>
             <el-button
               type="success"
               style="margin-top: 15px"
@@ -139,6 +153,7 @@ export default {
   data() {
     return {
       url: URL,
+      inp: "",
       mosif: {
         nameProduct: "",
         desProduct: "",
@@ -155,7 +170,10 @@ export default {
       shows: {
         showComp: false,
         showYetzira: false,
+        showOpCates: false,
       },
+      category2: [],
+      category: [],
       counter: 0,
       num: "",
       serch: "",
@@ -168,6 +186,24 @@ export default {
     };
   },
   watch: {
+    "mosif.categoryProduct"(val) {
+      this.category = this.category2;
+      this.category = this.category.filter((e) => {
+        return e.includes(val);
+      });
+      if (this.category.length === 0) {
+        this.shows.showOpCates = false;
+      } else {
+        this.shows.showOpCates = true;
+        this.category.forEach((element) => {
+          if (val === element) {
+            this.shows.showOpCates = false;
+          } else {
+            this.shows.showOpCates = true;
+          }
+        });
+      }
+    },
     "shows.showComp"(val) {
       // alert(val);
     },
@@ -234,6 +270,18 @@ export default {
   },
 
   mounted() {
+    this.$ax.get(URL).then((res) => {
+      let Dop = res.data;
+      this.category.push("כללי");
+      Dop.forEach((element) => {
+        this.category.push(this.returncategory(element.category));
+      });
+      this.category = this.category.filter((e, i, arr) => {
+        return arr.indexOf(e) === i;
+      });
+      this.category2 = this.category;
+      // console.log(this.category);
+    });
     document.body.style.background = "rgba(35, 33, 33, 0.17)";
     this.$ax.get(URL).then((res) => {
       this.products = res.data;
@@ -286,6 +334,31 @@ export default {
   },
 
   methods: {
+    asyncfilter() {
+      setTimeout(() => {
+        this.shows.showOpCates = false;
+      }, 1000);
+    },
+    bodek(c) {
+      this.mosif.categoryProduct = c;
+    },
+    returncategory(n) {
+      if (n === "aronotM") {
+        return "ארונות מטבח";
+      }
+      if (n === "birzeyM") {
+        return "ברזי מטבח";
+      }
+      if (n === "miklahonim") {
+        return "מקלחונים";
+      }
+      if (n !== "aronotM" || n !== "birzeyM" || n !== "miklahonim") {
+        return n;
+      }
+      if (n === "הכל") {
+        return n;
+      }
+    },
     serchProducts(row) {
       //   console.log("prk", row.products);
       let arr = [];
@@ -399,6 +472,16 @@ export default {
   justify-content: center; /* מרכז אופקי */
   align-items: center; /* מרכז אנכי */
 }
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgb(255, 255, 255); /* שימוש ב-border-top במקום border-bottom */
+  position: relative;
+  left: 48%;
+}
+
 .el-menuc {
   display: flex;
 }
@@ -419,5 +502,21 @@ export default {
 .hosef-text {
   font-size: 40px;
   height: 100px;
+}
+.opCates {
+  margin-bottom: 4px;
+  background: white;
+  height: 30px;
+  text-align: center;
+  border-radius: 17px;
+}
+.opCates:hover {
+  cursor: pointer;
+  margin-bottom: 4px;
+  background: rgb(198, 195, 195);
+  height: 30px;
+  color: rgb(30, 255, 0);
+  text-align: center;
+  border-radius: 17px;
 }
 </style>
