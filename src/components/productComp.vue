@@ -62,12 +62,13 @@
           <el-button
             type="success"
             ref="b"
-            class="button"
+            class="buttoon"
             @click="husefLaSal"
             v-if="$route.path === '/'"
             >הוסף לסל</el-button
           >
           <el-button
+            class="buttoon"
             type="primary"
             style="float: left"
             v-if="$route.path === '/'"
@@ -270,18 +271,22 @@ body {
   display: flex;
   flex-direction: column;
 }
-/* .button {
-  position: relative;
-  left: 50px;
-} */
-</style>
-<style>
-/* סגנון עבור מסכים שרוחב הוא 600px ומעלה */
-
-/* סגנון עבור מסכים שרוחב הוא פחות מ-600px */
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 600px) {
   .box {
-    background: blue;
+    height: auto;
+  }
+  .title {
+    position: relative;
+  }
+  .child {
+    position: relative;
+    margin-top: 30px;
+  }
+  .val {
+    width: 100%;
+    position: relative;
+    left: 13px;
   }
 }
 </style>
+<style></style>

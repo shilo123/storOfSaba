@@ -90,7 +90,7 @@
       <!--  -->
     </div>
     <el-row :gutter="3" class="row">
-      <el-col :span="6" v-for="p in prod" :key="p._id">
+      <el-col :span="6" v-for="p in prod" :key="p._id" class="ell-coll">
         <product
           :product="p"
           :sums="sum"
@@ -123,7 +123,7 @@
       </span>
       <!-- require(`../assets/${prodOfC.name}.png`) -->
     </el-dialog>
-    <hazeshelhalemata class="posham" :prod="prod"></hazeshelhalemata>
+    <!-- <hazeshelhalemata class="posham" :prod="prod"></hazeshelhalemata> -->
   </div>
 </template>
 <script>
@@ -131,9 +131,9 @@ import { URL } from "@/URL/url";
 import VMenug from "@/components/menuComp.vue";
 import product from "@/components/productComp.vue";
 import logo from "@/assets/logo.png";
-import hazeshelhalemata from "@/components/lemata.vue";
+// import hazeshelhalemata from "@/components/lemata.vue";
 export default {
-  components: { VMenug, product, hazeshelhalemata },
+  components: { VMenug, product },
   data() {
     return {
       shows: {
@@ -353,6 +353,12 @@ body {
 }
 #item:hover {
   background: rgba(224, 210, 210, 0.558) !important;
+}
+@media screen and (max-width: 600px) {
+  .ell-coll {
+    width: 100%;
+    height: 20%;
+  }
 }
 </style>
 <style>

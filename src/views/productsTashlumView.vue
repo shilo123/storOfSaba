@@ -17,13 +17,19 @@
           מוצרים שקנית
         </div>
         <el-row :gutter="3" class="row">
-          <el-col :span="6" v-for="p in products" :key="p._id">
+          <el-col :span="6" v-for="p in products" :key="p._id" class="ell-coll">
             <product :product="p"></product>
           </el-col>
         </el-row>
       </div>
       <div class="table">
-        <el-table :data="products" show-summary border :summary-method="metSum">
+        <el-table
+          :data="products"
+          show-summary
+          border
+          :summary-method="metSum"
+          class="tabl"
+        >
           <el-table-column label="מחיר" prop="price"></el-table-column>
           <el-table-column
             label="מחיר ליחידה"
@@ -206,5 +212,16 @@ body {
 }
 .lig {
   margin-top: 84px;
+}
+@media screen and (max-width: 600px) {
+  .ell-coll {
+    width: 100%;
+    height: 20%;
+  }
+  .tabl {
+    height: auto;
+    padding: 4px;
+    /* width: 400px; */
+  }
 }
 </style>

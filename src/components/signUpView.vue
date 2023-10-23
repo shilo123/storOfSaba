@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="all">
     <el-button type="primary" @click="auto" v-if="false"
       >מילוי אוטומטי</el-button
     >
@@ -13,13 +13,18 @@
       >
         <i class="el-icon-back"></i>חזור לשלב הקודם</el-button
       >
-      <el-steps :space="360" :active="active" finish-status="success">
+      <el-steps
+        :space="360"
+        :active="active"
+        finish-status="success"
+        class="st"
+      >
         <el-step title="פרטים אישיים"></el-step>
         <el-step title="פרטי אשראי"></el-step>
         <el-step title="סיום"></el-step>
       </el-steps>
     </div>
-    <div v-show="showform">
+    <div v-show="showform" class="docytocy">
       <el-form :model="ElFrom" class="from" :rules="rules" ref="from">
         <!-- / -->
         <div class="pratim-Ishiim" v-if="active === 0">
@@ -509,4 +514,18 @@ export default {
 /* .fronItem .el-form-item__label {
   background: #000;
 } */
+@media screen and (max-width: 600px) {
+  .docytocy {
+    width: 186%;
+    position: relative;
+    right: 200px;
+  }
+  .st {
+    position: relative;
+    right: 110px;
+  }
+  .but {
+    display: none;
+  }
+}
 </style>

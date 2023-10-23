@@ -29,6 +29,7 @@
       >
       <!-- <el-tooltip effect="dark" content="בחר קטגוריה" placement="top"> -->
       <el-submenu
+        class="cates"
         v-if="$route.path === '/'"
         index="3"
         id="item-default"
@@ -51,6 +52,7 @@
       </el-submenu>
       <!-- </el-tooltip> -->
       <el-menu-item
+        class="inputac"
         index="4"
         id="item-default"
         ref="menuItemS"
@@ -148,5 +150,27 @@ body {
   position: absolute;
   right: 70%;
   top: 15%;
+}
+@media screen and (max-width: 600px) {
+  .menu {
+    width: 95%;
+    position: relative;
+    left: 20px;
+  }
+  #item-default {
+    font-size: 32px;
+    width: auto !important;
+  }
+  #IconCss {
+    display: none;
+  }
+  .cates {
+    position: relative;
+    right: -40px;
+  }
+  .inputac {
+    position: relative;
+    left: 48px;
+  }
 }
 </style>
