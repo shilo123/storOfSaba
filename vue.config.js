@@ -20,7 +20,7 @@ module.exports = defineConfig({
     // הגדרת Workbox
     workboxPluginMode: "InjectManifest",
     workboxOptions: {
-      swSrc: path.resolve(__dirname, "src/registerServiceWorker.js"),
+      swSrc: "src/registerServiceWorker.js",
       swDest: "registerServiceWorker.js", // הנתיב לקובץ ה-Service Worker בפרויקט המצוי
     },
   },
