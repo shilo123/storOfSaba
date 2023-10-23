@@ -1,7 +1,7 @@
 <!-- cild -->
 <template>
   <div>
-    <el-card class="box" ref="box">
+    <el-card class="box" ref="box" id="box">
       <div>
         <i
           class="el-icon-check"
@@ -274,4 +274,14 @@ body {
   position: relative;
   left: 50px;
 } */
+</style>
+<style>
+/* סגנון עבור מסכים שרוחב הוא 600px ומעלה */
+
+/* סגנון עבור מסכים שרוחב הוא פחות מ-600px */
+@media screen and (max-width: 1199px) {
+  .box {
+    background: blue;
+  }
+}
 </style>
