@@ -27,6 +27,8 @@ export default {
   },
 
   mounted() {
+    {
+    }
     setTimeout(() => {
       let arrname = [];
       this.prod.forEach((element) => {
