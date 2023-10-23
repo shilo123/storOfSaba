@@ -3,7 +3,9 @@
 import { precacheAndRoute } from "workbox-precaching";
 
 import { register } from "register-service-worker";
-precacheAndRoute(self.__WB_MANIFEST);
+self.__precacheManifest = self.__WB_MANIFEST || [];
+
+precacheAndRoute(self.__precacheManifest, {});
 
 if (process.env.NODE_ENV === "production") {
   register(`${process.env.BASE_URL}registerServiceWorker.js`, {
