@@ -208,6 +208,27 @@ export default {
 };
 </script>
 <style scoped>
+@media screen {
+  .box {
+    display: none;
+    border-radius: 16px;
+    padding: 0px 30px 30px 30px;
+    /* height: auto; */
+    width: auto;
+    background: #f1e9e9;
+    /* background: #78aca6; */
+    margin-bottom: 10px;
+    margin-left: 0%;
+    display: flex;
+    flex-direction: column;
+    height: 513px;
+    /* height: 550px; */
+    justify-content: space-between;
+  }
+}
+body {
+  background: rgba(174, 224, 130, 0.793);
+}
 .box {
   border-radius: 16px;
   padding: 0px 30px 30px 30px;
