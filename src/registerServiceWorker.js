@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
 //service-worker.js
+import { precacheAndRoute } from "workbox-precaching";
+
 import { register } from "register-service-worker";
 precacheAndRoute(self.__WB_MANIFEST);
 
