@@ -1,3 +1,5 @@
+const path = require("path");
+
 const { defineConfig } = require("@vue/cli-service");
 //vue.config.js
 module.exports = defineConfig({
@@ -20,7 +22,7 @@ module.exports = defineConfig({
     // הגדרת Workbox
     workboxPluginMode: "InjectManifest",
     workboxOptions: {
-      swSrc: "src/registerServiceWorker.js",
+      swSrc: "../src/registerServiceWorker.js",
       swDest: "registerServiceWorker.js", // הנתיב לקובץ ה-Service Worker בפרויקט המצוי
     },
   },
