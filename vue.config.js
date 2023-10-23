@@ -1,13 +1,7 @@
 const { defineConfig } = require("@vue/cli-service");
+
 module.exports = defineConfig({
   transpileDependencies: true,
-});
-
-module.exports = {
-  workboxOptions: {
-    swSrc: "src/service-worker.js",
-    swDest: "service-worker.js", // הנתיב לקובץ ה-Service Worker בפרויקט המצוי
-  },
 
   pwa: {
     name: "My App",
@@ -27,7 +21,7 @@ module.exports = {
     workboxPluginMode: "InjectManifest",
     workboxOptions: {
       swSrc: "src/service-worker.js",
-      // ...הוסף עוד הגדרות לפי הצורך
+      swDest: "service-worker.js", // הנתיב לקובץ ה-Service Worker בפרויקט המצוי
     },
   },
-};
+});
