@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 //service-worker.js
 import { register } from "register-service-worker";
+precacheAndRoute(self.__WB_MANIFEST);
 
 if (process.env.NODE_ENV === "production") {
   register(`${process.env.BASE_URL}registerServiceWorker.js`, {
