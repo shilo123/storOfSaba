@@ -16,11 +16,31 @@
         <div style="width: 100%; text-align: center; font-size: 60px">
           מוצרים שקנית
         </div>
-        <el-row :gutter="3" class="row">
-          <el-col :span="6" v-for="p in products" :key="p._id" class="ell-coll">
+        <!-- <el-row :gutter="3" class="row">
+          <el-col :span="6" v-for="p in products" :key="p._id" class="ell-coll"> -->
+        <el-carousel
+          autoplay
+          height="460px"
+          style="
+            width: 50%;
+            position: relative;
+            margin-bottom: 2%;
+            height: auto;
+            left: 26%;
+          "
+          :interval="14000"
+          type="card"
+        >
+          <el-carousel-item
+            v-for="p in products"
+            :key="p._id"
+            class="itemCarusel"
+          >
             <product :product="p"></product>
-          </el-col>
-        </el-row>
+          </el-carousel-item>
+        </el-carousel>
+        <!-- </el-col>
+        </el-row> -->
       </div>
       <div class="table">
         <el-table
@@ -213,6 +233,9 @@ body {
 .lig {
   margin-top: 84px;
 }
+/* .itemCarusel {
+  margin: 0px 20px 0px 20px;
+} */
 @media screen and (max-width: 600px) {
   .ell-coll {
     width: 100%;
