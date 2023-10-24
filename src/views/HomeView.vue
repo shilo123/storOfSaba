@@ -100,7 +100,12 @@
         ></product>
       </el-col>
     </el-row>
-    <el-dialog :title="prodOfC.name" :visible.sync="shows.showDi" width="30%">
+    <el-dialog
+      :title="prodOfC.name"
+      :visible.sync="shows.showDi"
+      class="dialog"
+      width="30%"
+    >
       <div>{{ prodOfC.des }}</div>
       <img
         :src="serchPick()"
@@ -309,6 +314,9 @@ export default {
 };
 </script>
 <style scoped>
+/* .dialog {
+  width: 50%;
+} */
 .posham {
   background: rgba(20, 68, 244, 0.455);
   width: 98%;

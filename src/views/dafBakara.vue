@@ -77,8 +77,8 @@
         </el-table>
       </div>
     </div>
-    <div v-if="shows.showComp">
-      <button ref="butoc">click</button>
+    <div v-show="shows.showComp">
+      <button ref="bamba" v-show="false">click</button>
       <el-row :gutter="3" class="row">
         <el-col :span="6" v-for="p in products" :key="p._id">
           <product :product="p"></product>
@@ -279,16 +279,18 @@ export default {
       if (sessionStorage.getItem("customReload") === "true") {
         this.funckmafil();
         sessionStorage.removeItem("customReload");
-        // this.shows.showComp = this.$store.state.ifshow;
-        this.shows.showComp = true;
-        this.activos = "2";
-        this.glila();
+        setTimeout(() => {
+          this.shows.showComp = true;
+          this.activos = "2";
+          this.glila();
+        }, 1000);
       } else {
         // אם המשתמש הגיע לכאן לא דרך הפונקציה hosefProducts, אז הפעל את הפונקציה funckmafil בהוק המונטד
         this.$nextTick(() => {
-          // this.funckmafil();
+          this.funckmafil();
         });
       }
+      this.shows.showComp = this.$store.state.ifshow;
       let Dop = res.data;
       this.category.push("כללי");
       Dop.forEach((element) => {
@@ -353,8 +355,8 @@ export default {
   updated() {},
   methods: {
     glila() {
-      let button = this.$refs.butoc;
-      console.log(button);
+      let button = this.$refs.bamba;
+      button.click();
 
       window.scrollTo(0, document.body.scrollHeight);
     },
