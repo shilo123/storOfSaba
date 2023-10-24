@@ -49,7 +49,7 @@
         <!-- / -->
         <!-- / -->
 
-        <el-upload :action="actiontmuna()" v-if="routeP()">
+        <el-upload :action="actiontmuna()" v-if="routeP()" :on-success="onFile">
           <div class="shabetmun">שנה תמונה</div>
         </el-upload>
         <!-- / -->
@@ -222,6 +222,9 @@ export default {
       // console.log(this.prod._id);
       // url + 'shinuyTmuna' + prod._id
       return this.url + "shinuyTmuna/" + this.prod._id;
+    },
+    onFile() {
+      this.$message.success("התמונה שונתה");
     },
   },
 };
