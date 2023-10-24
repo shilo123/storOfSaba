@@ -17,6 +17,11 @@
         v-if="$route.path === '/'"
       >
         <i class="el-icon-shopping-cart-2" id="IconCss"></i>לתשלום
+        <el-badge
+          v-if="ids.length > 0"
+          :value="ids.length"
+          style="position: relative; bottom: 20px"
+        ></el-badge>
       </el-menu-item>
       <!-- </el-badge> -->
 
@@ -148,7 +153,7 @@ body {
 #IconCss {
   font-size: 40px;
   position: absolute;
-  right: 70%;
+  right: 73%;
   top: 15%;
 }
 @media screen and (max-width: 600px) {

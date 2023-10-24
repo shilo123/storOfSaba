@@ -10,12 +10,13 @@
   >
     <div style="position: absolute" v-if="false">
       <router-link to="/avtaha"
-        ><el-button type="primary">ניהול</el-button></router-link
-      >
+        ><el-button type="primary"><i class="el-icon-cart"></i></el-button
+      ></router-link>
     </div>
     <!-- shows.showPerut -->
     <!-- <div v-show="true" class="ta" ref="table"> -->
     <el-menu
+      v-if="true"
       default-active="2"
       class="el-menu-vertical-demo"
       :collapse="collapse"
@@ -123,7 +124,7 @@
       </span>
       <!-- require(`../assets/${prodOfC.name}.png`) -->
     </el-dialog>
-    <!-- <hazeshelhalemata class="posham" :prod="prod"></hazeshelhalemata> -->
+    <hazeshelhalemata class="posham"></hazeshelhalemata>
   </div>
 </template>
 <script>
@@ -131,9 +132,9 @@ import { URL } from "@/URL/url";
 import VMenug from "@/components/menuComp.vue";
 import product from "@/components/productComp.vue";
 import logo from "@/assets/logo.png";
-// import hazeshelhalemata from "@/components/lemata.vue";
+import hazeshelhalemata from "@/components/lemata.vue";
 export default {
-  components: { VMenug, product },
+  components: { VMenug, product, hazeshelhalemata },
   data() {
     return {
       shows: {
@@ -335,7 +336,7 @@ body {
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 900px;
+  /* min-height: 900px; */
   z-index: 3000;
 }
 .el-menu--collapse {

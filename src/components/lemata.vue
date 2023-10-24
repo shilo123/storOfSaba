@@ -1,25 +1,27 @@
 <template>
-  <div v-if="prod">
+  <div>
     <div>
-      <strong>המוצרים:</strong> {{ prod.length > 0 ? arrnames : "טוען..." }}
+      <strong>המוצרים:</strong> {{ products.length > 0 ? arrnames : "טוען..." }}
     </div>
     <br />
     <div>
-      <strong>קטגוריות:</strong>{{ prod.length > 0 ? arrcates : "טוען..." }}
+      <strong>קטגוריות:</strong>{{ products.length > 0 ? arrcates : "טוען..." }}
     </div>
     <br />
     <div>
-      <strong>כולל:</strong>{{ prod.length > 0 ? arrColel : "טוען..." }}
+      <strong>כולל:</strong>{{ products.length > 0 ? arrColel : "טוען..." }}
     </div>
   </div>
 </template>
 <script>
+import { URL } from "@/URL/url";
+
 export default {
-  props: ["prod"],
   name: "StorOfSabaLemata",
 
   data() {
     return {
+      products: [],
       arrnames: [],
       arrcates: [],
       arrColel: [],
@@ -27,25 +29,26 @@ export default {
   },
 
   mounted() {
-    {
-    }
-    setTimeout(() => {
-      let arrname = [];
-      this.prod.forEach((element) => {
-        arrname.push(element.name);
-      });
-      this.arrnames = arrname.join("/");
-      let arrC = [];
-      this.prod.forEach((element) => {
-        arrC.push(this.returncategory(element.category));
-      });
-      this.arrcates = arrC.join("/");
-      let arrCole = [];
-      this.prod.forEach((element) => {
-        arrCole.push(element.des);
-      });
-      this.arrColel = arrCole.join("/");
-    }, 1000);
+    this.$ax.get(URL).then(
+      (res) => (this.products = res.data),
+      setTimeout(() => {
+        let arrname = [];
+        this.products.forEach((element) => {
+          arrname.push(element.name);
+        });
+        this.arrnames = arrname.join("/");
+        let arrC = [];
+        this.products.forEach((element) => {
+          arrC.push(this.returncategory(element.category));
+        });
+        this.arrcates = arrC.join("/");
+        let arrCole = [];
+        this.products.forEach((element) => {
+          arrCole.push(element.des);
+        });
+        this.arrColel = arrCole.join("/");
+      }, 1000)
+    );
   },
   methods: {
     returncategory(n) {

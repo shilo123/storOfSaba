@@ -78,6 +78,7 @@
       </div>
     </div>
     <div v-if="shows.showComp">
+      <button ref="butoc">click</button>
       <el-row :gutter="3" class="row">
         <el-col :span="6" v-for="p in products" :key="p._id">
           <product :product="p"></product>
@@ -212,7 +213,7 @@ export default {
       // alert(val);
     },
     activos(val) {
-      alert(val);
+      // alert(val);
       if (val === "2") {
         this.shows.showComp = true;
       } else {
@@ -275,6 +276,19 @@ export default {
 
   mounted() {
     this.$ax.get(URL).then((res) => {
+      if (sessionStorage.getItem("customReload") === "true") {
+        this.funckmafil();
+        sessionStorage.removeItem("customReload");
+        // this.shows.showComp = this.$store.state.ifshow;
+        this.shows.showComp = true;
+        this.activos = "2";
+        this.glila();
+      } else {
+        // אם המשתמש הגיע לכאן לא דרך הפונקציה hosefProducts, אז הפעל את הפונקציה funckmafil בהוק המונטד
+        this.$nextTick(() => {
+          // this.funckmafil();
+        });
+      }
       let Dop = res.data;
       this.category.push("כללי");
       Dop.forEach((element) => {
@@ -336,8 +350,14 @@ export default {
       element.style.fontSize = "40px";
     });
   },
-
+  updated() {},
   methods: {
+    glila() {
+      let button = this.$refs.butoc;
+      console.log(button);
+
+      window.scrollTo(0, document.body.scrollHeight);
+    },
     asyncfilter() {
       setTimeout(() => {
         this.shows.showOpCates = false;
@@ -432,6 +452,10 @@ export default {
     onFile(res) {
       this.mosif.Img = res;
     },
+    funckmafil() {
+      this.$store.commit("Sifshow", this.shows.showComp);
+      this.shows.showComp = true;
+    },
     hosefProducts() {
       if (
         this.mosif.nameProduct !== "" &&
@@ -445,8 +469,13 @@ export default {
             dangerouslyUseHTMLString: true,
             message: `<strong>המוצר <i>${this.mosif.nameProduct}</i>נוסף לאתר</strong>`,
           });
-
+          // sessionStorage.setItem("reloaded", "true");
+          sessionStorage.setItem("customReload", "true");
           window.location.reload();
+          // if (sessionStorage.getItem("reloaded") === "true") {
+          //   this.funckmafil();
+          //   sessionStorage.removeItem("reloaded"); // נקה את הפריט כדי שהקוד לא יתבצע בכל פעם שהדף נטען
+          // }
         });
       } else {
         this.$message.error({
