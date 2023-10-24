@@ -45,6 +45,16 @@
               "
           />
         </div>
+        <!-- / -->
+        <!-- / -->
+        <!-- / -->
+
+        <el-upload :action="actiontmuna()" v-if="routeP()">
+          <div class="shabetmun">שנה תמונה</div>
+        </el-upload>
+        <!-- / -->
+        <!-- / -->
+        <!-- / -->
         <div class="pr" v-if="$route.path === '/'">
           <span class="val">{{ prod.price }}₪</span
           ><span class="key">:מחיר</span>
@@ -120,6 +130,7 @@ export default {
 
   data() {
     return {
+      url: URL,
       visible: true,
       showVi2: false,
       showVi: false,
@@ -199,11 +210,18 @@ export default {
       this.visible = false;
       this.$ax.delete(URL + "Delprod/" + this.prod._id).then((res) => {
         console.log(res.data);
+        this.$emit("dellocall", this.prod._id);
         this.$message.warning({
           dangerouslyUseHTMLString: true,
           message: `<strong>המוצר <i>${this.prod.name}</i> הוסר מהאתר</strong>`,
         });
       });
+    },
+    actiontmuna() {
+      // console.log();
+      // console.log(this.prod._id);
+      // url + 'shinuyTmuna' + prod._id
+      return this.url + "shinuyTmuna/" + this.prod._id;
     },
   },
 };
@@ -270,6 +288,14 @@ body {
   margin-top: 0px;
   display: flex;
   flex-direction: column;
+}
+.shabetmun {
+  background: rgb(255, 178, 25);
+  margin: 0px;
+  position: relative;
+  bottom: 60%;
+  border-bottom: 3px solid black;
+  width: 445%;
 }
 @media screen and (max-width: 600px) {
   .box {

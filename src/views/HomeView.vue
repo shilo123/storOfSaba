@@ -314,9 +314,9 @@ export default {
 };
 </script>
 <style scoped>
-/* .dialog {
-  width: 50%;
-} */
+.dialog {
+  height: 100% !important;
+}
 .posham {
   background: rgba(20, 68, 244, 0.455);
   width: 98%;

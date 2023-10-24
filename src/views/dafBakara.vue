@@ -81,7 +81,7 @@
       <button ref="bamba" v-show="false">click</button>
       <el-row :gutter="3" class="row">
         <el-col :span="6" v-for="p in products" :key="p._id">
-          <product :product="p"></product>
+          <product :product="p" @dellocall="delL"></product>
         </el-col>
         <el-col :span="6" v-if="!shows.showYetzira">
           <div class="hosef">
@@ -485,6 +485,10 @@ export default {
           message: `<strong style="font-size:19px"> יש למלא את כל השדות</strong>`,
         });
       }
+    },
+    delL(id) {
+      let i = this.products.findIndex((e) => e._id === id);
+      this.products.splice(i, 1);
     },
   },
 };
