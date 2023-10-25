@@ -8,6 +8,7 @@
     element-loading-background="rgba(0, 0, 0, 0.8)"
     ref="divv"
   >
+    <div class="hen-ya">חן_יה שיווק מוצרי מיקלחת</div>
     <div style="position: absolute" v-if="false">
       <router-link to="/avtaha"
         ><el-button type="primary"><i class="el-icon-cart"></i></el-button
@@ -137,7 +138,7 @@
 import { URL } from "@/URL/url";
 import VMenug from "@/components/menuComp.vue";
 import product from "@/components/productComp.vue";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/nof.png";
 import hazeshelhalemata from "@/components/lemata.vue";
 export default {
   components: { VMenug, product, hazeshelhalemata },
@@ -334,8 +335,11 @@ export default {
 .img {
   border-bottom: 2px solid black;
   width: 100%;
-  height: 150px;
-  margin-top: 0px;
+  height: 200px;
+  margin: 0px;
+  position: relative;
+  bottom: 40px;
+  z-index: -1;
 }
 .ta {
   background: rgba(255, 0, 0, 0.219);
@@ -366,6 +370,19 @@ body {
 }
 #item:hover {
   background: rgba(224, 210, 210, 0.558) !important;
+}
+.hen-ya {
+  float: left;
+  font-size: 30px;
+  margin-left: 40px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1.5px;
+  word-spacing: 2px;
+  transition: transform 0.5s ease;
+  color: rgb(255, 106, 13);
+  border-bottom: 2px solid #ff9b4c;
 }
 @media screen and (max-width: 600px) {
   .ell-coll {

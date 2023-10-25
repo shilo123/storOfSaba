@@ -138,7 +138,7 @@ export default {
 .menu {
   margin: 0px;
   position: relative;
-  bottom: 10px;
+  bottom: 50px;
 }
 body {
   background: rgb(4, 113, 66);
