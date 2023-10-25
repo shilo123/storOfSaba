@@ -1,7 +1,12 @@
 <!-- cild -->
 <template>
   <div>
-    <el-card class="box" ref="box" id="box">
+    <el-card
+      :class="{ box: true, 'no-hover': $route.path !== '/' }"
+      ref="box"
+      id="box"
+      @mouseover="overol"
+    >
       <div>
         <i
           class="el-icon-check"
@@ -16,7 +21,9 @@
           >שמור פריט</el-button
         >
       </div>
-      <div class="title" v-if="IfHomeAndTashlum()">{{ prod.name }}</div>
+      <div class="title" v-if="IfHomeAndTashlum()" ref="title">
+        {{ prod.name }}
+      </div>
       <el-input
         v-model="UP.upName"
         placeholder="עדכן את שם המוצר"
@@ -162,7 +169,6 @@ export default {
     // let box = this.$refs.box.$el;
     // console.log(box.clientHeight);
   },
-
   methods: {
     husefLaSal() {
       // this.$refs.b.plain = true;
@@ -226,6 +232,10 @@ export default {
     onFile() {
       this.$message.success("התמונה שונתה");
     },
+    overol() {
+      let element = this.$refs.title;
+      element.style.fontSize = "30px";
+    },
   },
 };
 </script>
@@ -247,6 +257,10 @@ body {
   height: 513px;
   /* height: 550px; */
   justify-content: space-between;
+}
+.box:hover:not(.no-hover) {
+  background: #f1e9e95e;
+  border-radius: 56px;
 }
 .title {
   text-align: center;

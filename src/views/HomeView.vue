@@ -93,6 +93,7 @@
     <el-row :gutter="3" class="row">
       <el-col :span="6" v-for="p in prod" :key="p._id" class="ell-coll">
         <product
+          class="compRoduct"
           :product="p"
           :sums="sum"
           @addos="Add"
@@ -314,6 +315,9 @@ export default {
 };
 </script>
 <style scoped>
+/* .compRoduct:hover {
+  font-size: 20px;
+} */
 .dialog {
   height: 100% !important;
 }

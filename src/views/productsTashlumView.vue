@@ -112,7 +112,7 @@ export default {
     this.$ax.get(URL).then((res) => {
       this.products = res.data;
       // console.log("this.products", this.products);
-      document.body.style.background = "rgb(41, 255, 223)";
+      document.body.style.background = "rgba(41, 255, 173, 0.464)";
       this.sortProduct();
       this.sortprice();
       this.loading = false;
@@ -222,7 +222,7 @@ export default {
 </script>
 <style scoped>
 body {
-  background: rgb(41, 255, 223);
+  background: rgba(41, 255, 173, 0.464);
 }
 .img {
   border-bottom: 2px solid black;

@@ -1,4 +1,4 @@
-<template>
+<template v-show="products">
   <div>
     <div>
       <strong>המוצרים:</strong> {{ products.length > 0 ? arrnames : "טוען..." }}
