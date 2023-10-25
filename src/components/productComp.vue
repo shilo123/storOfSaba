@@ -260,7 +260,7 @@ body {
 }
 .box:hover:not(.no-hover) {
   background: #f1e9e95e;
-  border-radius: 56px;
+  border-radius: 58px;
 }
 .title {
   text-align: center;

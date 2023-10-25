@@ -276,6 +276,9 @@ export default {
 
   mounted() {
     this.$ax.get(URL).then((res) => {
+      setTimeout(() => {
+        this.glila();
+      }, 1000);
       if (sessionStorage.getItem("customReload") === "true") {
         this.funckmafil();
         sessionStorage.removeItem("customReload");
