@@ -323,7 +323,7 @@ export default {
   height: 100% !important;
 }
 .posham {
-  background: rgba(20, 68, 244, 0.455);
+  background: rgba(249, 251, 255, 0.455);
   width: 98%;
   text-align: right;
   height: auto;
@@ -338,7 +338,7 @@ export default {
   height: 200px;
   margin: 0px;
   position: relative;
-  bottom: 40px;
+  bottom: 43px;
   z-index: -1;
 }
 .ta {
@@ -383,6 +383,9 @@ body {
   transition: transform 0.5s ease;
   color: rgb(255, 106, 13);
   border-bottom: 2px solid #ff9b4c;
+}
+.hen-ya:hover {
+  transform: scale(1.1);
 }
 @media screen and (max-width: 600px) {
   .ell-coll {
