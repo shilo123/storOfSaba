@@ -1,4 +1,3 @@
 User-agent: *
 Disallow:
-
 Sitemap: https://hen-ya-shivuk.netlify.app/sitemap.xml
