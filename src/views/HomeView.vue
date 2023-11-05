@@ -14,62 +14,7 @@
         ><el-button type="primary"><i class="el-icon-cart"></i></el-button
       ></router-link>
     </div>
-    <!-- shows.showPerut -->
-    <!-- <div v-show="true" class="ta" ref="table"> -->
-    <el-menu
-      v-if="true"
-      default-active="2"
-      class="el-menu-vertical-demo"
-      :collapse="collapse"
-      style="position: absolute"
-      @open="handleOpen"
-      @close="handleClose"
-      :background-color="negev()"
-      text-color="black"
-      active-text-color="black"
-      @mouseover="mouse()"
-    >
-      <!-- background-color="rgba(48, 49, 42, 0.879)" -->
-      <el-menu-item index="1" @click="shinuy" v-if="!collapse">
-        <i :class="icono" style="font-size: 30px; color: black"></i>
-      </el-menu-item>
-      <template v-if="!collapse">
-        <el-submenu
-          index="2"
-          v-for="(p, i) in prodactinu"
-          :key="i"
-          style="border: 0.2px solid black; margin-bottom: 3px"
-        >
-          <template slot="title">
-            <span style="color: white">
-              {{ p.name }}
-            </span>
-          </template>
-          <el-menu-item-group title="אפשרויות">
-            <el-menu-item @click="haserProduct(p._id)"
-              ><span class="po">הסר מוצר </span></el-menu-item
-            >
-            <el-menu-item
-              ><span class="po">{{ p.price }}</span></el-menu-item
-            >
-            <el-menu-item class="po"> </el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-      </template>
-      <el-menu-item
-        index="3"
-        v-show="collapse"
-        id="item"
-        style="position: absolute; top: 10%; width: 3px; right: -5px"
-        :style="{ /*left: mouseX + 'px',*/ top: mouseY + 'px' }"
-        @click="shinuy"
-        ref="itemoscy12"
-        ><i
-          :class="icono"
-          style="font-size: 60px; position: absolute; right: 20px"
-        ></i
-      ></el-menu-item>
-    </el-menu>
+
     <div class="mst">
       <el-input
         v-model="leberurim"
@@ -79,6 +24,23 @@
         @input="valid()"
       >
       </el-input>
+    </div>
+    <!-- v-if="prodactinu.length > 0" -->
+    <div class="knia" v-if="prodactinu.length > 0">
+      <span>{{ sum }} סך הכל:</span>
+      <i class="el-icon-shopping-cart-2" style="font-size: 40px"></i>
+      <el-dropdown class="dropo">
+        <el-button type="primary">
+          לכל המוצרים שהזמנת<i class="el-icon-arrow-down el-icon--right"></i>
+        </el-button>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item v-for="p in prodactinu" :key="p._id">{{
+            p.name
+          }}</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <span class="aharon">{{ prodactinu[prodactinu.length - 1].name }}</span>
+      <!-- <span v-for="p in prodactinu" :key="p._id">{{ p.name }}|</span> -->
     </div>
     <div class="fixed">
       <el-image :src="logo" fit="cover" class="img"></el-image>
@@ -129,7 +91,6 @@
           >צא</el-button
         >
       </span>
-      <!-- require(`../assets/${prodOfC.name}.png`) -->
     </el-dialog>
     <hazeshelhalemata class="posham"></hazeshelhalemata>
   </div>
@@ -169,18 +130,6 @@ export default {
     prodactinu(old, val) {
       if (val.length === 0) {
         this.shows.showPerut = false;
-      }
-    },
-    collapse(val) {
-      if (val) {
-        this.icono = "el-icon-arrow-right";
-        document.body.style.background = "#ffdead";
-      } else {
-        setTimeout(() => {
-          this.icono = "el-icon-arrow-down";
-        }, 330);
-        document.body.style.background = "rgba(48, 49, 42, 0.693)";
-        // document.body.style.zIndex = "99999";
       }
     },
     ArrIds(val) {
@@ -305,13 +254,6 @@ export default {
     serchPick() {
       return `${this.prodOfC.imageName}`;
     },
-    negev() {
-      if (this.collapse) {
-        return "rgb(224, 210, 210)";
-      } else {
-        return "rgba(48, 49, 42, 0.879)";
-      }
-    },
   },
 };
 </script>
@@ -319,6 +261,24 @@ export default {
 /* .compRoduct:hover {
   font-size: 20px;
 } */
+.knia {
+  background: linear-gradient(45deg, #4137ff, #00e5ff);
+  height: 40px;
+  width: 25%;
+  position: fixed;
+  bottom: 20px;
+  left: 10%;
+  z-index: 99999;
+}
+.knia .dropo {
+  position: absolute;
+  left: 100%;
+}
+.aharon {
+  position: absolute;
+  left: 50%;
+  top: 7px;
+}
 .dialog {
   height: 100% !important;
 }
