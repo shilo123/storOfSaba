@@ -36,9 +36,9 @@
           לכל המוצרים שהזמנת<i class="el-icon-arrow-down el-icon--right"></i>
         </el-button>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item v-for="p in prodactinu" :key="p._id">{{
-            p.name
-          }}</el-dropdown-item>
+          <el-dropdown-item v-for="p in prodactinu" :key="p._id"
+            >{{ p.name }}{{ " " }}/{{ " " }}{{ p.price }}₪</el-dropdown-item
+          >
         </el-dropdown-menu>
       </el-dropdown>
       <span class="aharon">{{ prodactinu[prodactinu.length - 1].name }} </span>
