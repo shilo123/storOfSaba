@@ -1,5 +1,5 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://hen-ya-shivuk.netlify.app/sitemap.xml
 Allow: /sitemap.xml
+Sitemap: https://hen-ya-shivuk.netlify.app/sitemap.xml
