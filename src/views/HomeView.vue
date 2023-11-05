@@ -55,7 +55,7 @@
       ></VMenug>
       <!--  -->
     </div>
-    <el-row :gutter="3" class="row">
+    <el-row :gutter="5" class="row">
       <el-col :span="6" v-for="p in prod" :key="p._id" class="ell-coll">
         <product
           class="compRoduct"
@@ -356,6 +356,7 @@ body {
 }
 @media screen and (max-width: 600px) {
   .ell-coll {
+    background: #000;
     width: 100%;
     height: 20%;
   }

@@ -30,17 +30,6 @@
         <div class="pratim-Ishiim" v-if="active === 0">
           <el-form-item
             class="fronItem"
-            prop="ishi.Inputmail"
-            label="מייל"
-            ref="ishi.Inputmail"
-          >
-            <el-input
-              v-model="ElFrom.ishi.Inputmail"
-              placeholder="הקלד אמייל"
-            ></el-input>
-          </el-form-item>
-          <el-form-item
-            class="fronItem"
             prop="ishi.Inputshem"
             label="שם מלא"
             ref="ishi.Inputshem"
@@ -48,6 +37,18 @@
             <el-input
               v-model="ElFrom.ishi.Inputshem"
               placeholder="הקלד שם מלא"
+            ></el-input>
+          </el-form-item>
+
+          <el-form-item
+            class="fronItem"
+            prop="ishi.Inputmail"
+            label="מייל"
+            ref="ishi.Inputmail"
+          >
+            <el-input
+              v-model="ElFrom.ishi.Inputmail"
+              placeholder="הקלד אמייל"
             ></el-input>
           </el-form-item>
           <el-form-item
