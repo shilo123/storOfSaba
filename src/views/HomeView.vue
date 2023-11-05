@@ -27,7 +27,9 @@
     </div>
     <!-- v-if="prodactinu.length > 0" -->
     <div class="knia" v-if="prodactinu.length > 0">
-      <span>{{ sum }} סך הכל:</span>
+      <span class="sum"
+        ><strong>{{ sum }}₪</strong> :סך הכל</span
+      >
       <i class="el-icon-shopping-cart-2" style="font-size: 40px"></i>
       <el-dropdown class="dropo">
         <el-button type="primary">
@@ -39,7 +41,7 @@
           }}</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <span class="aharon">{{ prodactinu[prodactinu.length - 1].name }}</span>
+      <span class="aharon">{{ prodactinu[prodactinu.length - 1].name }} </span>
       <!-- <span v-for="p in prodactinu" :key="p._id">{{ p.name }}|</span> -->
     </div>
     <div class="fixed">
@@ -274,10 +276,15 @@ export default {
   position: absolute;
   left: 100%;
 }
+.sum {
+  position: relative;
+  top: -10px;
+}
 .aharon {
   position: absolute;
   left: 50%;
   top: 7px;
+  width: auto;
 }
 .dialog {
   height: 100% !important;
