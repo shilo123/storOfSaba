@@ -101,7 +101,7 @@
 import { URL } from "@/URL/url";
 import VMenug from "@/components/menuComp.vue";
 import product from "@/components/productComp.vue";
-import logo from "@/assets/nof.png";
+import logo from "@/assets/dresser-6717656_1280.jpg";
 import hazeshelhalemata from "@/components/lemata.vue";
 export default {
   components: { VMenug, product, hazeshelhalemata },
@@ -176,7 +176,7 @@ export default {
       let prodactOne = this.prod.find((e) => {
         return e._id === id;
       });
-      this.mes(prodactOne);
+      // this.mes(prodactOne);
       this.prodactinu.push(prodactOne);
       this.sum = this.prodactinu.reduce((sum, item) => {
         return +sum + +item.price;
@@ -307,6 +307,7 @@ export default {
   position: relative;
   bottom: 43px;
   z-index: -1;
+  filter: brightness(80%);
 }
 .ta {
   background: rgba(255, 0, 0, 0.219);
@@ -369,7 +370,7 @@ body {
   margin: 0px 0px 0px 0px;
   height: auto;
   padding-bottom: 470px;
-  background: #ffdead;
-  background: linear-gradient(to top, #ffdead 100%, #ff9b4c 0%);
+  background: url("@/assets/aronReka.jpg");
+  /* filter: brightness(60%); */
 }
 </style>

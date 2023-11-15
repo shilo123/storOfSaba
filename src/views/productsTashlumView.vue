@@ -107,12 +107,15 @@ export default {
   },
 
   mounted() {
-    document.body.style.height = "2180px";
+    document.body.style.height = "1490px";
     this.loading = true;
     this.$ax.get(URL).then((res) => {
       this.products = res.data;
       // console.log("this.products", this.products);
-      document.body.style.background = "rgba(41, 255, 173, 0.464)";
+      // document.body.style.background = "rgba(41, 255, 173, 0.464)";
+      let moshe = require("@/assets/wardrobe-5969982_1280.jpg");
+      document.body.style.background = `url(${moshe})`;
+      // document.body.style.background = `rgb(161, 152, 141)`;
       this.sortProduct();
       this.sortprice();
       this.loading = false;
@@ -222,7 +225,7 @@ export default {
 </script>
 <style scoped>
 body {
-  background: rgba(41, 255, 173, 0.464);
+  background: rgb(161, 152, 141);
 }
 .img {
   border-bottom: 2px solid black;
