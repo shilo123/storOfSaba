@@ -23,6 +23,14 @@
         <el-step title="פרטי אשראי"></el-step>
         <el-step title="סיום"></el-step>
       </el-steps>
+      <el-button
+        type="success"
+        class="posi"
+        v-if="active === 1 && shogen2"
+        ref="butco"
+        @click="next"
+        >לחץ כאן אם סיימת</el-button
+      >
     </div>
     <div v-show="showform" class="docytocy">
       <el-form :model="ElFrom" class="from" :rules="rules" ref="from">
@@ -76,7 +84,8 @@
           </el-form-item>
         </div>
         <!-- / -->
-        <div class="pirtey-ashray" v-if="active === 1">
+        <!-- v-if="active === 1" -->
+        <div class="pirtey-ashray" v-if="false">
           <el-form-item
             class="fronItem"
             prop="ashrai.misparCartis"
@@ -147,10 +156,16 @@
             <el-input v-model="sumo" placeholder="" disabled> </el-input>
           </el-form-item>
         </div>
+        <iframe
+          class="iframos"
+          v-if="active === 1 && shogen2"
+          :src="urlo"
+          ref="ifro"
+        ></iframe>
         <!-- / -->
         <div v-if="active === 2"></div>
         <!-- / -->
-        <el-form-item class="fronItem">
+        <el-form-item class="fronItem" v-if="active !== 1">
           <el-button type="success" style="width: 100%" @click="next">
             {{ serchname() }}
             <i class="el-icon-right"></i>
@@ -168,6 +183,8 @@ export default {
   props: ["sumco"],
   data() {
     return {
+      urlo: null,
+      shogen2: false,
       count: 0,
       showform: true,
       sumo: "סכום לתשלום :" + this.sumco,
@@ -395,6 +412,7 @@ export default {
   mounted() {
     //
     this.sidurfrom();
+    // let el = this.$refs.butco.$el;
   },
 
   methods: {
@@ -447,6 +465,23 @@ export default {
       this.$refs.from.validate((valid) => {
         if (valid) {
           this.active++;
+          if (this.active === 1) {
+            this.$emit("collHainyanim", this.ElFrom);
+            setTimeout(() => {
+              if (this.shogen2) {
+                let elo = this.$refs.ifro;
+                console.log("elo.src", elo.src);
+                setInterval(() => {
+                  // if (this.$refs.butco) {
+                  //   let el = this.$refs.butco;
+                  // el.$el.style.display = "none";
+                  // }
+                }, 1000);
+                // el.$el.style.display = "";
+              }
+            }, 1000);
+          }
+
           if (this.active > 2) {
             this.active = 0;
             this.sendPratim();
@@ -488,13 +523,24 @@ export default {
         return "עבור לשלב הבא";
       }
     },
+    theTashlumos(url) {
+      this.urlo = url;
+      this.shogen2 = true;
+    },
+    ERROR(val) {
+      if (val === "mail") {
+        setTimeout(() => {
+          this.active = 0;
+        }, 1000);
+      }
+    },
   },
 };
 </script>
 <style>
-.sf{
- width: 100%;
- height: 100%;
+.sf {
+  width: 100%;
+  height: 100%;
 }
 </style>
 <style scoped>
@@ -517,6 +563,19 @@ export default {
 .but {
   position: absolute;
   left: -138px;
+}
+.iframos {
+  width: 170%;
+  height: 760px;
+  position: absolute;
+  right: -25%;
+}
+.posi {
+  position: absolute;
+  width: 51%;
+  height: 50px;
+  right: 54%;
+  z-index: 2;
 }
 /* .fronItem .el-form-item__label {
   background: #000;

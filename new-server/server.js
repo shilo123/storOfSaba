@@ -13,6 +13,13 @@ const AWS = require("aws-sdk");
 // const twilio = require("twilio");
 app.use(bodyParser.json());
 app.use(cors());
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+//
+//
+//
+//
+//
 async function sendEmail(receiver, subject, body) {
   const request = mj.post("send", { version: "v3.1" }).request({
     Messages: [

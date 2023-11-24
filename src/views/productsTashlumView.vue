@@ -75,7 +75,14 @@
           </el-table-column>
         </el-table>
       </div>
-      <lig class="lig" :sumco="serchSum()" v-if="showComp" @siyum="send"></lig>
+      <lig
+        ref="lig"
+        class="lig"
+        :sumco="serchSum()"
+        v-if="showComp"
+        @siyum="send"
+        @collHainyanim="ashraio"
+      ></lig>
       <div v-show="!showComp" style="font-size: 80px; text-align: center">
         הפרטים מולאו
       </div>
@@ -119,10 +126,77 @@ export default {
       this.sortProduct();
       this.sortprice();
       this.loading = false;
+      // this.ashraio();
     });
   },
 
   methods: {
+    BodyOfAshray(form, sum, prodact) {
+      // console.log(form.ishi.Inputmail);
+      let body = {
+        key: "f6f86b77a4ff4d9254253cfa7eb854d3462ad4c6d4f2a0c6cd564dc40e2cb68a",
+        Local: "He",
+        UniqueId: "",
+        SuccessUrl: "",
+        CancelUrl: "",
+        CallbackUrl: "",
+        PaymentType: "regular",
+        CreateInvoice: "false",
+        AdditionalText: "",
+        ShowCart: "true",
+        ThemeColor: "005ebb",
+        BitButtonEnabled: "true",
+        ApplePayButtonEnabled: "true",
+        GooglePayButtonEnabled: "true",
+        Installments: {
+          Type: "regular",
+          MinQuantity: "1",
+          MaxQuantity: "12",
+        },
+        Customer: {
+          Email: form.ishi.Inputmail,
+          Name: form.ishi.Inputshem,
+          PhoneNumber: form.ishi.Inputphone,
+          Attributes: {
+            HolderId: "none",
+            Name: "required",
+            PhoneNumber: "required",
+            Email: "optional",
+          },
+        },
+        CartItems: [],
+        FocusType: "None",
+        CardsIcons: {
+          ShowVisaIcon: "true",
+          ShowMastercardIcon: "true",
+          ShowDinersIcon: "true",
+          ShowAmericanExpressIcon: "true",
+          ShowIsracardIcon: "true",
+        },
+        IssuerWhiteList: [1, 2, 3, 4, 5, 6],
+        BrandWhiteList: [1, 2, 3, 4, 5, 6],
+        UseLightMode: "false",
+        UseCustomCSS: "false",
+        BackgroundColor: "FFFFFF",
+        ShowTotalSumInPayButton: "true",
+        ForceCaptcha: "false",
+      };
+
+      prodact.forEach((element) => {
+        let prospo = {
+          Amount: element.priceForInt,
+          Currency: "ILS",
+          Name: element.name,
+          Description: element.des,
+          Quantity: element.Some,
+          Image: element.imageName,
+          IsTaxFree: "false",
+          AdjustAmount: "false",
+        };
+        body.CartItems.push(prospo);
+      });
+      return body;
+    },
     sortProduct() {
       //   console.log("this.products", this.products);
       let ids = this.$route.params.id.split(",");
@@ -211,7 +285,7 @@ export default {
       delete data.ashrai;
       console.log("data", data.products);
       let da = new Date();
-      let sof = `${da.getFullYear()}/${da.getMonth()}/${da.getDate()}`;
+      let sof = `${da.getFullYear()}/${da.getMonth() + 1}/${da.getDate()}`;
       let shaa = `${da.getHours()}:${da.getMinutes()}`;
       this.showComp = false;
       data.Date = { shaa, sof };
@@ -219,6 +293,25 @@ export default {
       this.$ax.post(URL + "SendData", data).then((res) => {
         // console.log(res.data);
       });
+    },
+    async ashraio(form) {
+      // console.log(this.products);
+      let body = this.BodyOfAshray(form, this.sum, this.products);
+      let res = await this.$ax.post(
+        "https://pci.zcredit.co.il/webcheckout/api/WebCheckout/CreateSession",
+        body
+      );
+      // console.log(res.data.Data);
+      let reso = res.data.Data.SessionUrl;
+      this.$refs.lig.theTashlumos(reso);
+      if (
+        res.data.Data.ReturnMessage ===
+        "Input Error - Parameter 'Customer Email' was send with an invalid value"
+      ) {
+        this.$message.error("מייל לא תקין");
+        this.$refs.lig.ERROR("mail");
+      }
+      // console.log(this.$refs.lig);
     },
   },
 };
