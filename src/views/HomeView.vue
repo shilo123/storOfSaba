@@ -63,6 +63,7 @@
           :sums="sum"
           @addos="Add"
           @showD="showcoloco"
+          :id="p.name"
         ></product>
       </el-col>
     </el-row>
