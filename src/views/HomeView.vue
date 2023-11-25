@@ -153,7 +153,13 @@ export default {
     });
     this.loading = false;
   },
-
+  created() {
+    window.addEventListener("offline", () => {
+      setInterval(() => {
+        this.$message.error("בדוק את החיבור שלך לאינטרנט");
+      }, 30000);
+    });
+  },
   updated() {},
 
   methods: {

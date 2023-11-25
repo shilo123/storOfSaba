@@ -26,7 +26,7 @@
       <el-button
         type="success"
         class="posi"
-        v-if="active === 1 && shogen2"
+        v-if="bul && active === 1 && shogen2"
         ref="butco"
         @click="next"
         >לחץ כאן אם סיימת</el-button
@@ -183,6 +183,7 @@ export default {
   props: ["sumco"],
   data() {
     return {
+      bul: false,
       urlo: null,
       shogen2: false,
       count: 0,
@@ -405,6 +406,14 @@ export default {
     };
   },
   watch: {
+    active(val) {
+      if (val === 1) {
+        setTimeout(() => {
+          this.bul = this.active === 1 && this.shogen2;
+          if (!this.urlo) this.bul = this.urlo;
+        }, 4000);
+      }
+    },
     sumo(val) {
       alert();
     },

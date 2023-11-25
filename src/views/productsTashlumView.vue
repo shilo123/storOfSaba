@@ -118,15 +118,11 @@ export default {
     this.loading = true;
     this.$ax.get(URL).then((res) => {
       this.products = res.data;
-      // console.log("this.products", this.products);
-      // document.body.style.background = "rgba(41, 255, 173, 0.464)";
       let moshe = require("@/assets/wardrobe-5969982_1280.jpg");
       document.body.style.background = `url(${moshe})`;
-      // document.body.style.background = `rgb(161, 152, 141)`;
       this.sortProduct();
       this.sortprice();
       this.loading = false;
-      // this.ashraio();
     });
   },
 
