@@ -542,6 +542,12 @@ export default {
           this.active = 0;
         }, 1000);
       }
+      if (val === "כללי") {
+        this.$message.error("נסה שוב");
+        setTimeout(() => {
+          this.active = 0;
+        }, 1000);
+      }
     },
   },
 };

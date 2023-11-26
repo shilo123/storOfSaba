@@ -306,6 +306,14 @@ export default {
       ) {
         this.$message.error("מייל לא תקין");
         this.$refs.lig.ERROR("mail");
+      } else if (!reso) {
+        if (
+          res.data.Data.ReturnMessage !==
+          "Input Error - Parameter 'Customer Email' was send with an invalid value"
+        ) {
+          this.$refs.lig.ERROR("כללי");
+        }
+        return;
       }
       // console.log(this.$refs.lig);
     },
