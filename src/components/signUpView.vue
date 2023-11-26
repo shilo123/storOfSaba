@@ -476,19 +476,6 @@ export default {
           this.active++;
           if (this.active === 1) {
             this.$emit("collHainyanim", this.ElFrom);
-            setTimeout(() => {
-              if (this.shogen2) {
-                let elo = this.$refs.ifro;
-                console.log("elo.src", elo.src);
-                setInterval(() => {
-                  // if (this.$refs.butco) {
-                  //   let el = this.$refs.butco;
-                  // el.$el.style.display = "none";
-                  // }
-                }, 1000);
-                // el.$el.style.display = "";
-              }
-            }, 1000);
           }
 
           if (this.active > 2) {
@@ -501,19 +488,18 @@ export default {
       });
     },
     sendPratim() {
-      console.log(this.ElFrom.ashrai.validity.year);
-      if (
-        this.ElFrom.ashrai.validity.year === "" &&
-        this.ElFrom.ashrai.validity.month === ""
-      ) {
-        this.$message.error("לא מלאת תוקף כרטיס");
-        this.active = 1;
-        this.sidurfrom();
-      } else {
-        this.$emit("siyum", this.ElFrom);
-        this.$message.success("");
-      }
+      // if (
+      //   this.ElFrom.ashrai.validity.year === "" &&
+      //   this.ElFrom.ashrai.validity.month === ""
+      // ) {
+      //   this.$message.error("לא מלאת תוקף כרטיס");
+      //   this.active = 1;
+      //   this.sidurfrom();
+      // } else {
+      this.$emit("siyum", this.ElFrom);
+      // this.$message.success("");
     },
+
     sidurfrom() {
       let Estep = this.$refs.step;
       let Efrom = this.$refs.from.$el;
