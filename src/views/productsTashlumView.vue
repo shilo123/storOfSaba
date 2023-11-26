@@ -44,6 +44,7 @@
       </div>
       <div class="table">
         <el-table
+          id="table"
           :data="products"
           show-summary
           border
@@ -76,6 +77,7 @@
         </el-table>
       </div>
       <lig
+        id="lig"
         ref="lig"
         class="lig"
         :sumco="serchSum()"
@@ -128,7 +130,6 @@ export default {
 
   methods: {
     BodyOfAshray(form, sum, prodact) {
-      // console.log(form.ishi.Inputmail);
       let body = {
         key: "f6f86b77a4ff4d9254253cfa7eb854d3462ad4c6d4f2a0c6cd564dc40e2cb68a",
         Local: "He",

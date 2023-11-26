@@ -32,6 +32,20 @@
         @click="$route.path !== '/' ? $router.push({ path: '/' }) : ''"
         >דף הבית</el-menu-item
       >
+      <el-menu-item
+        index="4"
+        id="item-default"
+        @click="clicLinck('table')"
+        v-if="$route.path !== '/'"
+        ><a href="#table" ref="table">לפירוט</a></el-menu-item
+      >
+      <el-menu-item
+        index="5"
+        id="item-default"
+        @click="clicLinck('lig')"
+        v-if="$route.path !== '/'"
+        ><a href="#lig" ref="lig">לתשלום</a></el-menu-item
+      >
       <!-- <el-tooltip effect="dark" content="בחר קטגוריה" placement="top"> -->
       <el-submenu
         class="cates"
@@ -66,7 +80,8 @@
         <el-input
           v-model="serche"
           placeholder="חפש מוצר"
-          @input="$emit('serchop', serche)"
+          @input="inputica"
+          @keydown.space.native="onSpacePress"
         ></el-input>
         <!-- @input="$emit('serchop', serche)" -->
         <!-- $emit('serchop', serche) -->
@@ -88,6 +103,14 @@ export default {
   },
   watch: {},
   methods: {
+    inputica() {
+      this.$emit("serchop", this.serche);
+    },
+    clicLinck(val) {
+      if (this.$refs[val]) {
+        this.$refs[val].click();
+      }
+    },
     shaneI() {
       this.$refs.divo.color = "#FFBB5C";
       this.activeI = "3";
@@ -119,6 +142,9 @@ export default {
       if (n === "הכל") {
         return n;
       }
+    },
+    onSpacePress() {
+      this.serche += " ";
     },
   },
   mounted() {
@@ -156,6 +182,10 @@ body {
   right: 73%;
   top: 15%;
 }
+a {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 600px) {
   .menu {
     width: 95%;

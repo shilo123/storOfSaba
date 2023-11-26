@@ -63,7 +63,7 @@
           :sums="sum"
           @addos="Add"
           @showD="showcoloco"
-          :id="p.name"
+          :id="p._id"
         ></product>
       </el-col>
     </el-row>
@@ -296,16 +296,6 @@ export default {
 .dialog {
   height: 100% !important;
 }
-.posham {
-  background: rgba(249, 251, 255, 0.455);
-  width: 98%;
-  text-align: right;
-  height: auto;
-  padding: 10px;
-  position: absolute;
-  border: 2px solid black;
-  left: 10px;
-}
 .img {
   border-bottom: 2px solid black;
   width: 100%;
@@ -363,6 +353,10 @@ body {
 .hen-ya:hover {
   transform: scale(1.1);
 }
+a {
+  text-decoration: none;
+  margin: 0;
+}
 @media screen and (max-width: 600px) {
   .ell-coll {
     background: #000;
@@ -380,5 +374,8 @@ body {
   padding-bottom: 470px;
   background: url("@/assets/aronReka.jpg");
   /* filter: brightness(60%); */
+}
+html {
+  scroll-behavior: smooth;
 }
 </style>
