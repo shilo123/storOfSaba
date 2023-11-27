@@ -5,6 +5,7 @@ import tashlum from "@/views/productsTashlumView.vue";
 import bakara from "@/views/dafBakara.vue";
 import pratim from "@/views/PirteyHazmana.vue";
 import logco from "@/views/logco.vue";
+import succes from "@/views/succesView.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -32,6 +33,11 @@ const routes = [
     path: "/avtaha",
     name: "avtaha",
     component: logco,
+  },
+  {
+    path: "/succes",
+    name: "succes",
+    component: succes,
   },
 ];
 

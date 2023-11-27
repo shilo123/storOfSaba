@@ -1,6 +1,6 @@
 <template>
   <div class="all">
-    <el-button type="primary" @click="auto" v-if="false"
+    <el-button type="primary" @click="auto" v-if="true"
       >מילוי אוטומטי</el-button
     >
     <el-button type="primary" @click="del" v-if="false">מחיקת הכל</el-button>

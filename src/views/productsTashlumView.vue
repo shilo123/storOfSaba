@@ -126,6 +126,13 @@ export default {
       this.sortprice();
       this.loading = false;
     });
+    window.addEventListener("message", (e) => {
+      console.log(e.data);
+      console.log(e.origin);
+      if (e.data) {
+        this.$router.push("/");
+      }
+    });
   },
 
   methods: {
@@ -134,7 +141,7 @@ export default {
         key: "f6f86b77a4ff4d9254253cfa7eb854d3462ad4c6d4f2a0c6cd564dc40e2cb68a",
         Local: "He",
         UniqueId: "",
-        SuccessUrl: "",
+        SuccessUrl: "https://hen-ya-shivuk.com/succes",
         CancelUrl: "",
         CallbackUrl: "",
         PaymentType: "regular",
