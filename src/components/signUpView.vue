@@ -1,6 +1,6 @@
 <template>
   <div class="all">
-    <el-button type="primary" @click="auto" v-if="false"
+    <el-button type="primary" @click="auto" v-if="true"
       >מילוי אוטומטי</el-button
     >
     <el-button type="primary" @click="del" v-if="false">מחיקת הכל</el-button>
@@ -45,6 +45,7 @@
             <el-input
               v-model="ElFrom.ishi.Inputshem"
               placeholder="הקלד שם מלא"
+              class="input"
             ></el-input>
           </el-form-item>
 
@@ -581,18 +582,28 @@ export default {
 /* .fronItem .el-form-item__label {
   background: #000;
 } */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .docytocy {
-    width: 186%;
+    width: 166%;
     position: relative;
-    right: 200px;
+    right: 320px;
+    height: 800px;
+    background: rgba(0, 0, 0, 0.496);
+    top: 190px;
   }
   .st {
+    background: rgba(0, 0, 0, 0.496);
+    top: 190px;
     position: relative;
-    right: 110px;
+    right: 190px;
   }
   .but {
     display: none;
   }
+}
+</style>
+<style>
+input::placeholder {
+  text-align: right;
 }
 </style>

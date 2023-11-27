@@ -4,7 +4,7 @@
       העסקה בוצע בהצלחה קבלה במייל
       <i class="el-icon-check"></i>
     </div>
-    <h4 class="txt2" @click="postMessage">חזור לדף הבית</h4>
+    <h4 class="txt2" @click="postMessageo" ref="bu">חזור לדף הבית</h4>
   </div>
 </template>
 <script>
@@ -18,10 +18,14 @@ export default {
   mounted() {},
 
   methods: {
-    postMessage() {
+    postMessageo() {
+      //   parent.postMessage(
+      //     "on",
+      //     "https://hen-ya-shivuk.com/tashlum/65278f7d94b37c7731674729,65278e7e94b37c7731674728,6527914b94b37c773167472a,6527934a94b37c773167472b"
+      //   );
       parent.postMessage(
         "on",
-        "https://hen-ya-shivuk.com/tashlum/65278f7d94b37c7731674729,65278e7e94b37c7731674728,6527914b94b37c773167472a,6527934a94b37c773167472b"
+        "http://localhost:8080/tashlum/65278f7d94b37c7731674729,65278e7e94b37c7731674728,6527914b94b37c773167472a,6527934a94b37c773167472b"
       );
     },
   },

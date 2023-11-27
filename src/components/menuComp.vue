@@ -186,15 +186,15 @@ a {
   text-decoration: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .menu {
-    width: 95%;
+    width: 109%;
     position: relative;
     left: 20px;
   }
   #item-default {
-    font-size: 32px;
-    width: auto !important;
+    font-size: 42px;
+    width: 20%;
   }
   #IconCss {
     display: none;

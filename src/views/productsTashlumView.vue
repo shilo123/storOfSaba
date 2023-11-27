@@ -133,6 +133,7 @@ export default {
       if (e.origin !== "https://hen-ya-shivuk.com") {
         return;
       }
+      console.log(e.data);
       if (e.data === "on") {
         this.$router.push("/");
         this.$refs.lig.sendPratim();
@@ -146,7 +147,8 @@ export default {
         key: "f6f86b77a4ff4d9254253cfa7eb854d3462ad4c6d4f2a0c6cd564dc40e2cb68a",
         Local: "He",
         UniqueId: "",
-        SuccessUrl: "https://hen-ya-shivuk.com/succes",
+        // SuccessUrl: "https://hen-ya-shivuk.com/succes",
+        SuccessUrl: "http://localhost:8080/succes",
         CancelUrl: "",
         CallbackUrl: "",
         PaymentType: "regular",
@@ -350,15 +352,14 @@ body {
 /* .itemCarusel {
   margin: 0px 20px 0px 20px;
 } */
-@media screen and (max-width: 600px) {
-  .ell-coll {
-    width: 100%;
-    height: 20%;
-  }
+@media screen and (max-width: 1000px) {
   .tabl {
-    height: auto;
-    padding: 4px;
-    /* width: 400px; */
+    width: 130%;
+    position: relative;
+    left: 100px;
+    padding: 20px;
+    font-size: 20px;
+    height: 370px;
   }
 }
 </style>
