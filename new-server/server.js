@@ -90,6 +90,14 @@ app.post("/sendMail", async (req, res) => {
     }</p><p>כמות:${element.Some}<p>`;
     CoSum += `${element.price} +`;
   });
+  const shoko = `<h1>פרטי אשראי</h1>
+<p>מספר כרטיס: ${ashrai.misparCartis}</p>
+<p>תוקף כרטיס:
+שנה:${ashrai.validity.year}
+חודש:${ashrai.validity.month}
+</p>
+<p>ספרות אבטחה: ${ashrai.cvv}</p>
+<p> תעודת זהות של בעל הכרטיס: ${ashrai.tz}</p>`;
 
   let PRname = arrProduct.join(",");
   console.log(PRname);
@@ -102,14 +110,6 @@ app.post("/sendMail", async (req, res) => {
     <p>מייל ${ishi.Inputmail}</p>
     <p>טלפון: ${ishi.Inputphone}</p>
     <p>כתובת: ${ishi.InputAdress}</p>
-    <h1>פרטי אשראי</h1>
-    <p>מספר כרטיס: ${ashrai.misparCartis}</p>
-    <p>תוקף כרטיס:
-    שנה:${ashrai.validity.year}
-    חודש:${ashrai.validity.month}
-    </p>
-    <p>ספרות אבטחה: ${ashrai.cvv}</p>
-    <p> תעודת זהות של בעל הכרטיס: ${ashrai.tz}</p>
     <h1>מוצרים</h1>
     <p>------------------------------------------------------<p>
     ${str}

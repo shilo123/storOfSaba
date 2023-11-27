@@ -63,7 +63,7 @@
         <!-- / -->
         <!-- / -->
         <div class="pr" v-if="$route.path === '/'">
-          <span class="val">{{ prod.price }}₪</span
+          <span class="val">{{ serchprice(prod.price) }}₪</span
           ><span class="key">:מחיר</span>
         </div>
         <el-input
@@ -235,6 +235,17 @@ export default {
     overol() {
       let element = this.$refs.title;
       element.style.fontSize = "30px";
+    },
+    serchprice(p) {
+      if (p.length === 4) {
+        let newso = p.split("");
+        newso.splice(1, 0, ",");
+        newso = newso.join("");
+        // console.log(newso);
+        return newso;
+      } else {
+        return p;
+      }
     },
   },
 };

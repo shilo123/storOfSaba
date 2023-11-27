@@ -102,7 +102,7 @@
 import { URL } from "@/URL/url";
 import VMenug from "@/components/menuComp.vue";
 import product from "@/components/productComp.vue";
-import logo from "@/assets/hotel-1330855_1280.jpg";
+import logo from "@/assets/lemaala.png";
 import hazeshelhalemata from "@/components/lemata.vue";
 export default {
   components: { VMenug, product, hazeshelhalemata },
@@ -299,13 +299,13 @@ export default {
 .img {
   border-bottom: 2px solid black;
   width: 100%;
-  height: 200px;
+  height: 140px;
   margin: 0px;
   position: relative;
   bottom: 43px;
   z-index: -1;
-  filter: brightness(80%);
-  filter: hue-rotate(80%);
+  filter: brightness(110%);
+  /* filter: hue-rotate(120%); */
 }
 .ta {
   background: rgba(255, 0, 0, 0.219);
