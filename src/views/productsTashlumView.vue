@@ -132,7 +132,7 @@ export default {
       console.log("e.origin", e.origin);
       if (e.data === "on") {
         this.$router.push("/");
-        // this.$refs.lig.sendPratim();
+        this.$refs.lig.sendPratim();
       }
     });
   },
