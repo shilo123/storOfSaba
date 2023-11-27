@@ -360,11 +360,13 @@ a {
   text-decoration: none;
   margin: 0;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .ell-coll {
-    background: #000;
-    width: 100%;
-    height: 20%;
+    /* background: #000; */
+    width: 23%;
+    height: 40%;
+    margin-bottom: 30px;
+    margin-left: 100px;
   }
 }
 </style>
