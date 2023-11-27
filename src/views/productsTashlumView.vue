@@ -131,6 +131,7 @@ export default {
       console.log(e.origin);
       if (e.data) {
         this.$router.push("/");
+        this.$refs.lig.sendPratim();
       }
     });
   },

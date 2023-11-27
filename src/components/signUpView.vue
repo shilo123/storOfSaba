@@ -26,7 +26,7 @@
       <el-button
         type="success"
         class="posi"
-        v-if="bul && active === 1 && shogen2"
+        v-if="bul && active === 1 && shogen2 && false"
         ref="butco"
         @click="next"
         >לחץ כאן אם סיימת</el-button
