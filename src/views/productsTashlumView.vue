@@ -130,6 +130,9 @@ export default {
       // console.log("e", e);
       // console.log("e.data", e.data);
       // console.log("e.origin", e.origin);
+      if (e.origin !== "https://hen-ya-shivuk.com") {
+        return;
+      }
       if (e.data === "on") {
         this.$router.push("/");
         this.$refs.lig.sendPratim();
