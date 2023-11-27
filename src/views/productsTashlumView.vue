@@ -127,9 +127,9 @@ export default {
       this.loading = false;
     });
     window.addEventListener("message", (e) => {
-      console.log("e", e);
-      console.log("e.data", e.data);
-      console.log("e.origin", e.origin);
+      // console.log("e", e);
+      // console.log("e.data", e.data);
+      // console.log("e.origin", e.origin);
       if (e.data === "on") {
         this.$router.push("/");
         this.$refs.lig.sendPratim();
