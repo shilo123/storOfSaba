@@ -133,10 +133,14 @@ export default {
       if (e.origin !== "https://hen-ya-shivuk.com") {
         return;
       }
-      console.log(e.data);
+      // console.log(e.data);
+      if (e.data === "send") {
+        if (this.$refs.lig) {
+          this.$refs.lig.sendPratim();
+        }
+      }
       if (e.data === "on") {
         this.$router.push("/");
-        this.$refs.lig.sendPratim();
       }
     });
   },
@@ -147,8 +151,8 @@ export default {
         key: "f6f86b77a4ff4d9254253cfa7eb854d3462ad4c6d4f2a0c6cd564dc40e2cb68a",
         Local: "He",
         UniqueId: "",
-        // SuccessUrl: "https://hen-ya-shivuk.com/succes",
-        SuccessUrl: "http://localhost:8080/succes",
+        SuccessUrl: "https://hen-ya-shivuk.com/succes",
+        // SuccessUrl: "http://localhost:8080/succes",
         CancelUrl: "",
         CallbackUrl: "",
         PaymentType: "regular",

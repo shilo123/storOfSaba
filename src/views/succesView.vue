@@ -15,18 +15,23 @@ export default {
     return {};
   },
 
-  mounted() {},
+  mounted() {
+    parent.postMessage(
+      "send",
+      "https://hen-ya-shivuk.com/tashlum/65278f7d94b37c7731674729,65278e7e94b37c7731674728,6527914b94b37c773167472a,6527934a94b37c773167472b"
+    );
+  },
 
   methods: {
     postMessageo() {
-      //   parent.postMessage(
-      //     "on",
-      //     "https://hen-ya-shivuk.com/tashlum/65278f7d94b37c7731674729,65278e7e94b37c7731674728,6527914b94b37c773167472a,6527934a94b37c773167472b"
-      //   );
       parent.postMessage(
         "on",
-        "http://localhost:8080/tashlum/65278f7d94b37c7731674729,65278e7e94b37c7731674728,6527914b94b37c773167472a,6527934a94b37c773167472b"
+        "https://hen-ya-shivuk.com/tashlum/65278f7d94b37c7731674729,65278e7e94b37c7731674728,6527914b94b37c773167472a,6527934a94b37c773167472b"
       );
+      //   parent.postMessage(
+      //     "on",
+      //     "http://localhost:8080/tashlum/65278f7d94b37c7731674729,65278e7e94b37c7731674728,6527914b94b37c773167472a,6527934a94b37c773167472b"
+      //   );
     },
   },
 };

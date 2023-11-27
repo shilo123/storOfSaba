@@ -440,7 +440,7 @@ export default {
     },
     plusRevahh() {
       this.count++;
-      console.log("this.count", this.count);
+      // console.log("this.count", this.count);
       if (this.count === 4) {
         this.ElFrom.ashrai.misparCartis += " ";
         this.count = 0;
@@ -497,8 +497,9 @@ export default {
       //   this.active = 1;
       //   this.sidurfrom();
       // } else {
-      this.$emit("siyum", this.ElFrom);
-      // this.$message.success("");
+      if (this.ElFrom.ishi.Inputshem) {
+        this.$emit("siyum", this.ElFrom);
+      } // this.$message.success("");
     },
 
     sidurfrom() {
