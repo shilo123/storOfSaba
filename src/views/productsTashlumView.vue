@@ -127,11 +127,12 @@ export default {
       this.loading = false;
     });
     window.addEventListener("message", (e) => {
+      console.log("e", e);
       console.log("e.data", e.data);
       console.log("e.origin", e.origin);
-      if (e.data) {
+      if (e.data === "on") {
         this.$router.push("/");
-        this.$refs.lig.sendPratim();
+        // this.$refs.lig.sendPratim();
       }
     });
   },
@@ -288,7 +289,7 @@ export default {
         console.log(res);
       });
       delete data.ashrai;
-      console.log("data", data.products);
+      // console.log("data", data.products);
       let da = new Date();
       let sof = `${da.getFullYear()}/${da.getMonth() + 1}/${da.getDate()}`;
       let shaa = `${da.getHours()}:${da.getMinutes()}`;
