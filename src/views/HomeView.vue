@@ -160,7 +160,7 @@ export default {
     window.addEventListener("offline", () => {
       setInterval(() => {
         this.$message.error("בדוק את החיבור שלך לאינטרנט");
-      }, 30000);
+      }, 3000);
     });
   },
   updated() {},
