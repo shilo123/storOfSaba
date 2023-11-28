@@ -372,13 +372,7 @@ a {
     margin-left: 100px;
   }
   .knia {
-    background: linear-gradient(45deg, #4137ff, #00e5ff);
-    height: 90px;
-    width: 35%;
-    position: fixed;
-    bottom: 90px;
-    left: 20%;
-    z-index: 200;
+    display: none;
   }
   .knia .dropo {
     position: absolute;
