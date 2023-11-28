@@ -363,7 +363,6 @@ body {
     left: 100px;
     padding: 20px;
     font-size: 20px;
-    height: 370px;
   }
 }
 </style>
