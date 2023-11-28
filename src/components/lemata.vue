@@ -48,7 +48,7 @@ export default {
         let arrname = [];
         this.products.forEach((element) => {
           arrname.push(
-            `<a href=#${element._id} style="text-decoration: none;">`
+            `<a href=#${element._id} style="text-decoration: none;font-size:20px">`
           );
           arrname.push(element.name);
           arrname.push("</a>");
