@@ -375,6 +375,7 @@ a {
     display: none;
   }
   .knia .dropo {
+    display: none;
     position: absolute;
     left: 37%;
     top: 40px;
