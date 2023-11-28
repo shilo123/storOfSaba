@@ -10,6 +10,7 @@
         class="but"
         @click="active !== 0 ? (active = active - 1) : (active = 0)"
         size="mini"
+        v-if="active > 0"
       >
         <i class="el-icon-back"></i>חזור לשלב הקודם</el-button
       >

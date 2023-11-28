@@ -274,7 +274,7 @@ export default {
   font-size: 20px;
 } */
 .knia {
-  background: linear-gradient(45deg, #4137ff, #00e5ff);
+  background: linear-gradient(45deg, #00e5ff, #4137ff);
   height: 40px;
   width: 25%;
   position: fixed;
