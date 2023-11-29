@@ -104,6 +104,8 @@ export default {
   watch: {},
   methods: {
     inputica() {
+      {
+      }
       this.$emit("serchop", this.serche);
     },
     clicLinck(val) {
