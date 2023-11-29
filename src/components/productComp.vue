@@ -239,10 +239,13 @@ export default {
     serchprice(p) {
       if (p.length === 4) {
         let newso = p.split("");
-        newso.splice(1, 0, ",");
-        newso = newso.join("");
-        // console.log(newso);
-        return newso;
+        if (!newso.includes(".")) {
+          newso.splice(1, 0, ",");
+          newso = newso.join("");
+          return newso;
+        } else {
+          return p;
+        }
       } else {
         return p;
       }

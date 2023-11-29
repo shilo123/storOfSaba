@@ -56,14 +56,19 @@
       <!--  -->
     </div>
     <el-row :gutter="5" class="row">
-      <el-col :span="6" v-for="p in prod" :key="p._id" class="ell-coll">
+      <el-col
+        :span="6"
+        v-for="p in prod"
+        :key="p._id"
+        class="ell-coll"
+        :id="p._id"
+      >
         <product
           class="compRoduct"
           :product="p"
           :sums="sum"
           @addos="Add"
           @showD="showcoloco"
-          :id="p._id"
         ></product>
       </el-col>
     </el-row>
