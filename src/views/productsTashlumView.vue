@@ -13,12 +13,16 @@
         <VMenu class="ME"></VMenu>
       </div>
       <div style="border-bottom: 2px solid black">
-        <div style="width: 100%; text-align: center; font-size: 60px">
+        <div
+          style="width: 100%; text-align: center; font-size: 60px"
+          class="caru"
+        >
           מוצרים שקנית
         </div>
         <!-- <el-row :gutter="3" class="row">
           <el-col :span="6" v-for="p in products" :key="p._id" class="ell-coll"> -->
         <el-carousel
+          class="caru"
           autoplay
           height="460px"
           style="
@@ -356,13 +360,9 @@ body {
 /* .itemCarusel {
   margin: 0px 20px 0px 20px;
 } */
-@media screen and (max-width: 1000px) {
-  .tabl {
-    width: 130%;
-    position: relative;
-    left: 100px;
-    padding: 20px;
-    font-size: 20px;
+@media screen and (min-width: 380px) {
+  .caru {
+    display: none;
   }
 }
 </style>

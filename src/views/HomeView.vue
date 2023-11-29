@@ -8,6 +8,13 @@
     element-loading-background="rgba(0, 0, 0, 0.8)"
     ref="divv"
   >
+    <i class="el-icon-menu" @click="menuco"></i>
+    <el-badge
+      v-if="prodactinu.length > 0 && !drawer"
+      :value="prodactinu.length"
+      class="badgj"
+    ></el-badge>
+
     <div class="hen-ya">חן_יה שיווק מוצרי מיקלחת</div>
     <div style="position: absolute" v-if="false">
       <router-link to="/avtaha"
@@ -25,6 +32,7 @@
       >
       </el-input>
     </div>
+
     <!-- v-if="prodactinu.length > 0" -->
     <div class="knia" v-if="prodactinu.length > 0">
       <span class="sum"
@@ -53,6 +61,22 @@
         @filtCategory="filterCategoriz"
         @serchop="serchproduct"
       ></VMenug>
+      <!--  -->
+      <el-drawer
+        class="draw"
+        title="תפריט"
+        :visible.sync="drawer"
+        :with-header="false"
+        size="60%"
+      >
+        <menuisPhone
+          :ids="ArrIds"
+          :category="category"
+          @filtCategory="filterCategoriz"
+          @serchop="serchproduct"
+        />
+      </el-drawer>
+
       <!--  -->
     </div>
     <el-row :gutter="5" class="row">
@@ -106,11 +130,12 @@
 <script>
 import { URL } from "@/URL/url";
 import VMenug from "@/components/menuComp.vue";
+import menuisPhone from "@/components/MenuePhone.vue";
 import product from "@/components/productComp.vue";
 import logo from "@/assets/lemaala.png";
 import hazeshelhalemata from "@/components/lemata.vue";
 export default {
-  components: { VMenug, product, hazeshelhalemata },
+  components: { VMenug, product, hazeshelhalemata, menuisPhone },
   data() {
     return {
       shows: {
@@ -132,6 +157,7 @@ export default {
       mouseX: "",
       mouseY: "",
       ev: "",
+      drawer: false,
     };
   },
 
@@ -271,6 +297,10 @@ export default {
     serchPick() {
       return `${this.prodOfC.imageName}`;
     },
+    menuco() {
+      // this.$message("hoy");
+      this.drawer = !this.drawer;
+    },
   },
 };
 </script>
@@ -368,9 +398,11 @@ a {
 .el-carousel {
   margin-bottom: 200px;
 }
-@media screen and (max-width: 1000px) {
+.el-icon-menu {
+  display: none;
+}
+/* @media screen and (max-width: 1000px) {
   .ell-coll {
-    /* background: #000; */
     width: 23%;
     height: 40%;
     margin-bottom: 30px;
@@ -384,6 +416,53 @@ a {
     position: absolute;
     left: 37%;
     top: 40px;
+  }
+} */
+@media screen and (min-width: 380px) {
+  .ell-coll {
+    /* background: #000; */
+    /* background: red; */
+    width: 73%;
+    /* height: 40%; */
+    position: relative;
+    left: 13px;
+    margin-bottom: 30px;
+  }
+  .knia {
+    display: none;
+  }
+  .knia .dropo {
+    display: none;
+    position: absolute;
+    left: 37%;
+    top: 40px;
+  }
+  .posham {
+    display: none;
+  }
+  .img {
+    display: none;
+  }
+  .mst {
+    display: none;
+  }
+  .hen-ya {
+    z-index: -1;
+  }
+  .el-icon-menu {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 170px;
+    font-size: 40px;
+    color: rgb(226, 244, 183);
+  }
+  .badgj {
+    z-index: 9999999;
+    position: absolute;
+    right: 210px;
+    top: 14px;
   }
 }
 </style>
@@ -399,5 +478,12 @@ body {
 }
 html {
   scroll-behavior: smooth;
+}
+
+@media screen and (min-width: 380px) {
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
 }
 </style>

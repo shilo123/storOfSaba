@@ -11,6 +11,7 @@
     >
       <!-- arrData -->
       <el-menu-item
+        class="letashlum"
         index="1"
         id="item-default"
         @click="pushT"
@@ -188,7 +189,7 @@ a {
   text-decoration: none;
 }
 
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 1000px) {
   .menu {
     width: 109%;
     position: relative;
@@ -208,6 +209,28 @@ a {
   .inputac {
     position: relative;
     left: 48px;
+  }
+} */
+@media screen and (min-width: 380px) {
+  #item-default {
+    font-size: 22px;
+    width: 50%;
+  }
+  .cates {
+    display: none;
+  }
+  .inputac {
+    display: none;
+  }
+  #IconCss {
+    display: none;
+  }
+  .letashlum {
+    display: none;
+  }
+  .el-icon-s-home {
+    position: relative;
+    left: 90px;
   }
 }
 </style>
