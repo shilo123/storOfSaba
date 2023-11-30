@@ -29,12 +29,13 @@
       <el-menu-item
         index="2"
         id="item-default"
-        class="el-icon-s-home"
+        class="el-icon-s-home nanForPhone"
         @click="$route.path !== '/' ? $router.push({ path: '/' }) : ''"
-        >דף הבית</el-menu-item
+        >לדף הבית</el-menu-item
       >
       <el-menu-item
         index="4"
+        class="nanForPhone"
         id="item-default"
         @click="clicLinck('table')"
         v-if="$route.path !== '/'"
@@ -43,6 +44,7 @@
       <el-menu-item
         index="5"
         id="item-default"
+        class="nanForPhone"
         @click="clicLinck('lig')"
         v-if="$route.path !== '/'"
         ><a href="#lig" ref="lig">לתשלום</a></el-menu-item
@@ -87,6 +89,16 @@
         <!-- @input="$emit('serchop', serche)" -->
         <!-- $emit('serchop', serche) -->
       </el-menu-item>
+      <el-menu-item index="6" class="OnlyPhone" v-if="window.innerWidth <= 400">
+        <el-input
+          v-if="$route.path === '/'"
+          class="inputoca"
+          v-model="serche"
+          placeholder="חפש מוצר"
+          @input="inputica"
+          @keydown.space.native="onSpacePress"
+        ></el-input>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -96,6 +108,7 @@ export default {
   props: ["category", "ids"],
   data() {
     return {
+      window,
       activeI: "1",
       icon: "el-icon-caret-bottom",
       serche: "",
@@ -188,6 +201,9 @@ body {
 a {
   text-decoration: none;
 }
+.OnlyPhone {
+  display: none;
+}
 
 /* @media screen and (max-width: 1000px) {
   .menu {
@@ -211,7 +227,7 @@ a {
     left: 48px;
   }
 } */
-@media screen and (min-width: 380px) {
+@media screen and (max-width: 400px) {
   #item-default {
     font-size: 22px;
     width: 50%;
@@ -231,6 +247,15 @@ a {
   .el-icon-s-home {
     position: relative;
     left: 90px;
+  }
+  .nanForPhone {
+    display: none;
+  }
+  .OnlyPhone {
+    display: inline;
+  }
+  .inputoca {
+    width: 410%;
   }
 }
 </style>

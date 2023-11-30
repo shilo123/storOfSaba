@@ -15,7 +15,7 @@
 
         לתשלום</el-menu-item
       >
-      <el-menu-item-group title="קטגוריות">
+      <el-menu-item-group title="קטגוריות" v-if="$route.path === '/'">
         <el-menu-item
           :index="`1-${i}`"
           v-for="(c, i) in category"
@@ -24,7 +24,7 @@
           >{{ returncategory(c) }}</el-menu-item
         >
       </el-menu-item-group>
-      <el-menu-item-group title="חיפוש">
+      <el-menu-item-group title="חיפוש" v-if="$route.path === '/'">
         <el-menu-item index="2">
           <el-input
             v-model="serche"
@@ -34,6 +34,29 @@
           ></el-input>
         </el-menu-item>
       </el-menu-item-group>
+      <el-menu-item
+        index="3"
+        @click="$route.path !== '/' ? $router.push({ path: '/' }) : ''"
+        >חזור לדף הבית</el-menu-item
+      >
+      <el-menu-item
+        index="4"
+        class="nanForPhone"
+        id="item-default"
+        @click="clicLinck('table')"
+        v-if="$route.path !== '/'"
+        ><a href="#table" ref="table" @click="$emit('drawso')"
+          >לפירוט</a
+        ></el-menu-item
+      >
+      <el-menu-item
+        index="5"
+        id="item-default"
+        class="nanForPhone"
+        @click="clicLinck('lig')"
+        v-if="$route.path !== '/'"
+        ><a href="#lig" ref="lig">לתשלום</a></el-menu-item
+      >
     </el-menu>
   </div>
 </template>
@@ -60,6 +83,7 @@ export default {
       if (this.$refs[val]) {
         this.$refs[val].click();
       }
+      this.$emit("drawso");
     },
     shaneI() {
       this.$refs.divo.color = "#FFBB5C";
@@ -106,4 +130,8 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+a {
+  text-decoration: none;
+}
+</style>

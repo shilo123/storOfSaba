@@ -296,7 +296,6 @@ export default {
       return `${this.prodOfC.imageName}`;
     },
     menuco() {
-      // this.$message("hoy");
       this.drawer = !this.drawer;
     },
   },
@@ -399,6 +398,9 @@ a {
 .el-icon-menu {
   display: none;
 }
+.badgj {
+  display: none;
+}
 /* @media screen and (max-width: 1000px) {
   .ell-coll {
     width: 23%;
@@ -416,7 +418,7 @@ a {
     top: 40px;
   }
 } */
-@media screen and (min-width: 380px) {
+@media screen and (max-width: 400px) {
   .ell-coll {
     /* background: #000; */
     /* background: red; */
@@ -457,6 +459,7 @@ a {
     color: rgb(226, 244, 183);
   }
   .badgj {
+    display: inline;
     z-index: 9999999;
     position: absolute;
     right: 210px;
@@ -478,7 +481,7 @@ html {
   scroll-behavior: smooth;
 }
 
-@media screen and (min-width: 380px) {
+@media screen and (max-width: 400px) {
   body {
     max-width: 100%;
     overflow-x: hidden;

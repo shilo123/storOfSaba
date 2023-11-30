@@ -8,6 +8,18 @@
     element-loading-background="rgba(0, 0, 0, 0.8)"
   >
     <div>
+      <i class="el-icon-menu" @click="menuco"></i>
+
+      <el-drawer
+        class="draw"
+        title="תפריט"
+        :visible.sync="drawer"
+        :with-header="false"
+        size="60%"
+      >
+        <menuisPhone @drawso="drawer = false"
+      /></el-drawer>
+
       <div class="fixed">
         <el-image :src="logo" fit="cover" class="img"></el-image>
         <VMenu class="ME"></VMenu>
@@ -46,7 +58,7 @@
         <!-- </el-col>
         </el-row> -->
       </div>
-      <div class="table">
+      <div class="table" ref="tablo">
         <el-table
           id="table"
           :data="products"
@@ -100,12 +112,14 @@
 <script>
 import logo from "@/assets/logo.png";
 import VMenu from "@/components/menuComp.vue";
+import menuisPhone from "@/components/MenuePhone.vue";
+
 import { URL } from "@/URL/url";
 import product from "@/components/productComp.vue";
 import lig from "@/components/signUpView.vue";
 export default {
   name: "StorOfSabaProductsTashlumView",
-  components: { VMenu, product, lig },
+  components: { VMenu, product, lig, menuisPhone },
 
   data() {
     return {
@@ -116,6 +130,7 @@ export default {
       showComp: false,
       ArrIds: [],
       loading: false,
+      drawer: false,
     };
   },
 
@@ -129,6 +144,9 @@ export default {
       this.sortProduct();
       this.sortprice();
       this.loading = false;
+      // setInterval(() => {
+
+      // } // }, 2000);
     });
     window.addEventListener("message", (e) => {
       // console.log("e", e);
@@ -148,7 +166,6 @@ export default {
       }
     });
   },
-
   methods: {
     BodyOfAshray(form, sum, prodact) {
       let body = {
@@ -340,6 +357,9 @@ export default {
       }
       // console.log(this.$refs.lig);
     },
+    menuco() {
+      this.drawer = !this.drawer;
+    },
   },
 };
 </script>
@@ -356,13 +376,46 @@ body {
 .lig {
   margin-top: 84px;
 }
-
+.el-icon-menu {
+  display: none;
+}
 /* .itemCarusel {
   margin: 0px 20px 0px 20px;
 } */
-@media screen and (min-width: 380px) {
+@media screen and (max-width: 400px) {
   .caru {
     display: none;
+  }
+  .img {
+    display: none;
+  }
+  .ME {
+    position: relative;
+    top: 50px;
+  }
+  .el-icon-menu {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 170px;
+    font-size: 40px;
+    color: rgb(226, 244, 183);
+  }
+  .table {
+    position: absolute;
+    width: 70%;
+    overflow-x: scroll;
+    top: 20%;
+  }
+  .tabl {
+    overflow-x: scroll;
+  }
+  .lig {
+    position: absolute;
+    top: 30%;
+    left: 11%;
+    width: 100%;
   }
 }
 </style>

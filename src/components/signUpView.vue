@@ -584,7 +584,10 @@ export default {
 /* .fronItem .el-form-item__label {
   background: #000;
 } */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 400px) {
+  .stepo {
+    display: none;
+  }
   .docytocy {
     width: 166%;
     position: relative;
@@ -601,6 +604,10 @@ export default {
   }
   .but {
     display: none;
+  }
+  .iframos {
+    width: 100%;
+    right: -9px;
   }
 }
 </style>
