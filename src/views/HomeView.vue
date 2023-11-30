@@ -166,8 +166,6 @@ export default {
       if (val.length === 0) {
         this.shows.showPerut = false;
       }
-      {
-      }
     },
     ArrIds(val) {
       if (val.length === 0) {
