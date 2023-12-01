@@ -34,7 +34,7 @@
       >
     </div>
     <div v-show="showform" class="docytocy">
-      <el-form :model="ElFrom" class="from" :rules="rules" ref="from">
+      <el-form :model="ElFrom" class="from" :rules="rules" ref="from" id="lig">
         <!-- / -->
         <div class="pratim-Ishiim" v-if="active === 0">
           <el-form-item
@@ -589,12 +589,13 @@ export default {
     display: none;
   }
   .docytocy {
-    width: 166%;
-    position: relative;
-    right: 320px;
+    width: 142%;
+    position: absolute;
+    right: 5%;
     height: 800px;
-    background: rgba(0, 0, 0, 0.496);
-    top: 190px;
+    /* background: rgba(0, 0, 0, 0.496); */
+    top: 2350px;
+    z-index: 200;
   }
   .st {
     background: rgba(0, 0, 0, 0.496);

@@ -35,7 +35,7 @@
           <el-col :span="6" v-for="p in products" :key="p._id" class="ell-coll"> -->
         <el-carousel
           class="caru"
-          autoplay
+          autoplay="true"
           height="460px"
           style="
             width: 50%;
@@ -93,7 +93,6 @@
         </el-table>
       </div>
       <lig
-        id="lig"
         ref="lig"
         class="lig"
         :sumco="serchSum()"

@@ -10,7 +10,8 @@
         <el-badge
           v-if="ids.length > 0"
           :value="ids.length"
-          style="position: relative; bottom: 20px"
+          type="primary"
+          style="position: relative; bottom: 3px; left: -5%"
         ></el-badge>
 
         לתשלום</el-menu-item
@@ -35,6 +36,7 @@
         </el-menu-item>
       </el-menu-item-group>
       <el-menu-item
+        v-if="$route.path !== '/'"
         index="3"
         @click="$route.path !== '/' ? $router.push({ path: '/' }) : ''"
         >חזור לדף הבית</el-menu-item
