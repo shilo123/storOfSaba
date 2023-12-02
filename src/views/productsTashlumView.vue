@@ -109,10 +109,9 @@
   </div>
 </template>
 <script>
-import logo from "@/assets/logo.png";
+import logo from "@/assets/lemaala.png";
 import VMenu from "@/components/menuComp.vue";
 import menuisPhone from "@/components/MenuePhone.vue";
-
 import { URL } from "@/URL/url";
 import product from "@/components/productComp.vue";
 import lig from "@/components/signUpView.vue";
