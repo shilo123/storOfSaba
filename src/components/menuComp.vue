@@ -89,7 +89,12 @@
         <!-- @input="$emit('serchop', serche)" -->
         <!-- $emit('serchop', serche) -->
       </el-menu-item>
-      <el-menu-item index="6" class="OnlyPhone" v-if="window.innerWidth < 500">
+      <el-menu-item
+        index="6"
+        class="OnlyPhone"
+        v-if="window.innerWidth < 500"
+        @click="$route.path !== '/' ? clicLinck('lig') : ''"
+      >
         <el-input
           v-if="$route.path === '/'"
           class="inputoca"
@@ -98,6 +103,9 @@
           @input="inputica"
           @keydown.space.native="onSpacePress"
         ></el-input>
+        <a href="#lig" ref="lig" class="lig" v-if="$route.path !== '/'"
+          >לתשלום</a
+        >
       </el-menu-item>
     </el-menu>
   </div>
@@ -256,6 +264,14 @@ a {
   }
   .inputoca {
     width: 410%;
+    position: relative;
+    left: 13px;
+    top: 2px;
+  }
+  .lig {
+    position: relative;
+    left: 110%;
+    font-size: 30px;
   }
 }
 @media screen and (max-width: 530px) and (min-width: 400px) {
@@ -287,6 +303,11 @@ a {
   }
   .inputoca {
     width: 410%;
+  }
+  .lig {
+    position: relative;
+    left: 110%;
+    font-size: 30px;
   }
 }
 </style>
