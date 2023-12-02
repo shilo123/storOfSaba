@@ -193,7 +193,10 @@ export default {
       }, 3000);
     });
   },
-  updated() {},
+  updated() {
+    {
+    }
+  },
 
   methods: {
     trackMouse(event) {
