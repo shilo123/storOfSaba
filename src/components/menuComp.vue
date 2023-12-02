@@ -258,4 +258,35 @@ a {
     width: 410%;
   }
 }
+@media screen and (max-width: 530px) and (min-width: 400px) {
+  #item-default {
+    font-size: 22px;
+    width: 50%;
+  }
+  .cates {
+    display: none;
+  }
+  .inputac {
+    display: none;
+  }
+  #IconCss {
+    display: none;
+  }
+  .letashlum {
+    display: none;
+  }
+  .el-icon-s-home {
+    position: relative;
+    left: 90px;
+  }
+  .nanForPhone {
+    display: none;
+  }
+  .OnlyPhone {
+    display: inline;
+  }
+  .inputoca {
+    width: 410%;
+  }
+}
 </style>

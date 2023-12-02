@@ -417,4 +417,40 @@ body {
     width: 100%;
   }
 }
+@media screen and (max-width: 530px) and (min-width: 400px) {
+  .caru {
+    display: none;
+  }
+  .img {
+    display: none;
+  }
+  .ME {
+    position: relative;
+    top: 50px;
+  }
+  .el-icon-menu {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 170px;
+    font-size: 40px;
+    color: rgb(226, 244, 183);
+  }
+  .table {
+    position: absolute;
+    width: 70%;
+    overflow-x: scroll;
+    top: 20%;
+  }
+  .tabl {
+    overflow-x: scroll;
+  }
+  .lig {
+    position: absolute;
+    top: 60%;
+    left: -29%;
+    width: 130%;
+  }
+}
 </style>

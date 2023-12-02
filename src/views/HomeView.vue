@@ -174,6 +174,7 @@ export default {
     },
   },
   mounted() {
+    console.log(window.innerWidth);
     document.body.style.height = "";
     document.addEventListener("mousemove", this.trackMouse);
     this.loading = true;
@@ -426,6 +427,54 @@ a {
     /* height: 40%; */
     position: relative;
     left: 13px;
+    margin-bottom: 30px;
+  }
+  .knia {
+    display: none;
+  }
+  .knia .dropo {
+    display: none;
+    position: absolute;
+    left: 37%;
+    top: 40px;
+  }
+  .posham {
+    display: none;
+  }
+  .img {
+    display: none;
+  }
+  .mst {
+    display: none;
+  }
+  .hen-ya {
+    z-index: -1;
+  }
+  .el-icon-menu {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 170px;
+    font-size: 40px;
+    color: rgb(226, 244, 183);
+  }
+  .badgj {
+    display: inline;
+    z-index: 9999999;
+    position: absolute;
+    right: 210px;
+    top: 14px;
+  }
+}
+@media screen and (max-width: 530px) and (min-width: 400px) {
+  .ell-coll {
+    /* background: #000; */
+    /* background: red; */
+    width: 73%;
+    /* height: 40%; */
+    position: relative;
+    left: 83px;
     margin-bottom: 30px;
   }
   .knia {
