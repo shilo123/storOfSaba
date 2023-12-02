@@ -208,7 +208,8 @@ export default {
       this.$notify({
         title: "מידע",
         dangerouslyUseHTMLString: true,
-        message: `<strong>המוצר שנוסף: <i>${p.name}</i> </strong><br><i>לפירוט קנייה לחץ על החץ שבצד שמאל</i>`,
+        message: `<strong>המוצר שנוסף: <i>${p.name}</i> </strong>`,
+        position: "bottom-left",
       });
     },
     Add(id) {
@@ -230,6 +231,9 @@ export default {
         this.collapse = false;
       } else {
         this.shows.showPerut = false;
+      }
+      if (window.innerWidth <= 500) {
+        this.mes(prodactOne);
       }
     },
     sorted() {
