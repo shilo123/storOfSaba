@@ -89,7 +89,7 @@
         <!-- @input="$emit('serchop', serche)" -->
         <!-- $emit('serchop', serche) -->
       </el-menu-item>
-      <el-menu-item index="6" class="OnlyPhone" v-if="window.innerWidth <= 400">
+      <el-menu-item index="6" class="OnlyPhone" v-if="window.innerWidth < 500">
         <el-input
           v-if="$route.path === '/'"
           class="inputoca"
