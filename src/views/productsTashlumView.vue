@@ -58,6 +58,9 @@
         <!-- </el-col>
         </el-row> -->
       </div>
+      <div class="shokolata" v-if="boolci">
+        על מנת לראות את המשך הפירוט גלול לצדדים
+      </div>
       <div class="table" ref="tablo">
         <el-table
           id="table"
@@ -121,6 +124,7 @@ export default {
 
   data() {
     return {
+      boolci: window.innerWidth <= 500,
       logo,
       products: [],
       shogen: false,
@@ -143,9 +147,11 @@ export default {
       this.sortprice();
       this.loading = false;
       // setInterval(() => {
-
       // } // }, 2000);
     });
+    setTimeout(() => {
+      console.log(this.boolci);
+    }, 1000);
     window.addEventListener("message", (e) => {
       // console.log("e", e);
       // console.log("e.data", e.data);
@@ -380,6 +386,13 @@ body {
 /* .itemCarusel {
   margin: 0px 20px 0px 20px;
 } */
+.shokolata {
+  font-size: 20px;
+  position: absolute;
+  top: 13%;
+  left: 10%;
+  text-shadow: 1px 1px 1px #000000;
+}
 @media screen and (max-width: 400px) {
   .caru {
     display: none;
@@ -402,7 +415,7 @@ body {
   }
   .table {
     position: absolute;
-    width: 70%;
+    width: 72%;
     overflow-x: scroll;
     top: 20%;
   }
