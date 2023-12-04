@@ -210,6 +210,7 @@ export default {
         dangerouslyUseHTMLString: true,
         message: `<strong>המוצר שנוסף: <i>${p.name}</i> </strong>`,
         position: "bottom-left",
+        duration: 1000,
       });
     },
     Add(id) {
