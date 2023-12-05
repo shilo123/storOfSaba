@@ -33,7 +33,6 @@
       </el-input>
     </div>
 
-    <!-- v-if="prodactinu.length > 0" -->
     <div class="knia" v-if="prodactinu.length > 0">
       <span class="sum"
         ><strong>{{ sum }}₪</strong> :סך הכל</span
@@ -50,7 +49,6 @@
         </el-dropdown-menu>
       </el-dropdown>
       <span class="aharon">{{ prodactinu[prodactinu.length - 1].name }} </span>
-      <!-- <span v-for="p in prodactinu" :key="p._id">{{ p.name }}|</span> -->
     </div>
     <div class="fixed">
       <el-image :src="logo" fit="cover" class="img"></el-image>
@@ -139,7 +137,6 @@ export default {
   data() {
     return {
       shows: {
-        showPerut: false,
         showDi: false,
       },
       logo,
@@ -151,32 +148,18 @@ export default {
       leberurim: "לבירורים: 0528875848 משה",
       category: [],
       loading: false,
-      collapse: true,
       prodOfC: "",
-      icono: "el-icon-arrow-right",
-      mouseX: "",
-      mouseY: "",
-      ev: "",
       drawer: false,
     };
   },
 
   watch: {
-    prodactinu(old, val) {
-      if (val.length === 0) {
-        this.shows.showPerut = false;
-      }
-    },
-    ArrIds(val) {
-      if (val.length === 0) {
-        this.collapse = true;
-      }
-    },
+    prodactinu(old, val) {},
+    ArrIds(val) {},
   },
   mounted() {
-    console.log(window.innerWidth);
+    // console.log(window.innerWidth);
     document.body.style.height = "";
-    document.addEventListener("mousemove", this.trackMouse);
     this.loading = true;
     document.body.style.background = "";
     this.$ax.get(URL).then((res) => {
@@ -193,17 +176,9 @@ export default {
       }, 3000);
     });
   },
-  updated() {
-    {
-    }
-  },
+  updated() {},
 
   methods: {
-    trackMouse(event) {
-      this.mouseX = event.clientX;
-      this.mouseY = event.clientY;
-    },
-    mouse() {},
     mes(p) {
       this.$notify({
         title: "מידע",
@@ -226,13 +201,6 @@ export default {
       this.sum = this.prodactinu.reduce((sum, item) => {
         return +sum + +item.price;
       }, 0);
-      // console.log("this.prodactinu", this.prodactinu);
-      if (this.ArrIds.length > 0) {
-        this.shows.showPerut = true;
-        this.collapse = false;
-      } else {
-        this.shows.showPerut = false;
-      }
       if (window.innerWidth <= 500) {
         this.mes(prodactOne);
       }
@@ -248,13 +216,11 @@ export default {
       // console.log("this.category", this.category);
     },
     serchproduct(inp) {
-      // if (inp !== "") {
       this.prod = this.data2;
       console.log("inp", inp);
       this.prod = this.prod.filter((e) => {
         return e.name.includes(inp);
       });
-      // }
     },
     haserProduct(id) {
       let i = this.prodactinu.findIndex((e) => {
@@ -283,20 +249,6 @@ export default {
         });
       }
     },
-    shinuy() {
-      if (this.prodactinu.length > 0) {
-        this.collapse = !this.collapse;
-      } else {
-        this.$message("לא בחרת כלום");
-        this.collapse = true;
-      }
-    },
-    handleOpen() {
-      // this.$message("open");
-    },
-    handleClose() {
-      // this.$message("close");
-    },
     showcoloco(prodOfC) {
       this.shows.showDi = true;
       this.prodOfC = prodOfC;
@@ -311,9 +263,6 @@ export default {
 };
 </script>
 <style scoped>
-/* .compRoduct:hover {
-  font-size: 20px;
-} */
 .knia {
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.834);
 
@@ -339,9 +288,6 @@ export default {
   top: 7px;
   width: auto;
 }
-.dialog {
-  height: 100% !important;
-}
 .img {
   border-bottom: 2px solid black;
   width: 100%;
@@ -352,36 +298,6 @@ export default {
   z-index: -1;
   filter: brightness(110%);
   /* filter: hue-rotate(120%); */
-}
-.ta {
-  background: rgba(255, 0, 0, 0.219);
-  z-index: 8000;
-  position: fixed;
-  left: 70%;
-}
-body {
-  background: rgba(48, 49, 42, 0.693);
-}
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  /* min-height: 900px; */
-  z-index: 3000;
-}
-.el-menu--collapse {
-  width: 20px;
-  min-height: 300%;
-  color: aliceblue;
-  z-index: 5000;
-}
-.po {
-  color: rgb(127, 127, 112);
-}
-#item {
-  width: -4% !important;
-  background: rgb(224, 210, 210) !important;
-}
-#item:hover {
-  background: rgba(224, 210, 210, 0.558) !important;
 }
 .hen-ya {
   float: left;
@@ -403,32 +319,12 @@ a {
   text-decoration: none;
   margin: 0;
 }
-.el-carousel {
-  margin-bottom: 200px;
-}
 .el-icon-menu {
   display: none;
 }
 .badgj {
   display: none;
 }
-/* @media screen and (max-width: 1000px) {
-  .ell-coll {
-    width: 23%;
-    height: 40%;
-    margin-bottom: 30px;
-    margin-left: 100px;
-  }
-  .knia {
-    display: none;
-  }
-  .knia .dropo {
-    display: none;
-    position: absolute;
-    left: 37%;
-    top: 40px;
-  }
-} */
 @media screen and (max-width: 400px) {
   .ell-coll {
     /* background: #000; */
