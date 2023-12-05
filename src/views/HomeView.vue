@@ -315,6 +315,8 @@ export default {
   font-size: 20px;
 } */
 .knia {
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.834);
+
   background: linear-gradient(45deg, #00e5ff, #4137ff);
   height: 40px;
   width: 25%;
