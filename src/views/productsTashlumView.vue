@@ -390,7 +390,7 @@ body {
   font-size: 20px;
   position: absolute;
   top: 13%;
-  left: 7%;
+  left: 6%;
   text-shadow: 1px 1px 1px #000000;
 }
 @media screen and (max-width: 400px) {
